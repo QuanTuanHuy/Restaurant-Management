@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: restaurant-management
+
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3308/restaurant_management
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+  kafka:
+    bootstrap-servers: localhost:9094
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+app:
+    jwt:
+      signer-key: 1TjXchw5FloESb63Kc+DFhTARvpWL4jUGCwfGWxuG5SIf/1y/LgJxHnMqaF6A/ij
+      valid-duration: 36000
+
+server:
+  port: 8080
+
