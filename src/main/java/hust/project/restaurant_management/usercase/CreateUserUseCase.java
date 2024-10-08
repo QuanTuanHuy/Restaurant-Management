@@ -2,6 +2,7 @@ package hust.project.restaurant_management.usercase;
 
 
 import hust.project.restaurant_management.constants.ErrorCode;
+import hust.project.restaurant_management.constants.GenderEnum;
 import hust.project.restaurant_management.entity.RoleEntity;
 import hust.project.restaurant_management.entity.UserEntity;
 import hust.project.restaurant_management.entity.dto.request.CreateUserRequest;
@@ -31,7 +32,7 @@ public class CreateUserUseCase {
         }
 
         UserEntity user = userMapper.toEntityFromRequest(request);
-
+        user.setGender(GenderEnum.valueOf(request.getGender()).name());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         user = userPort.save(user);
