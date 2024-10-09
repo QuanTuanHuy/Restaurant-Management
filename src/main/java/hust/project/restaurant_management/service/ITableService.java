@@ -2,6 +2,7 @@ package hust.project.restaurant_management.service;
 
 import hust.project.restaurant_management.entity.TableEntity;
 import hust.project.restaurant_management.entity.dto.request.CreateTableRequest;
+import hust.project.restaurant_management.entity.dto.request.GetTableAvailableRequest;
 import hust.project.restaurant_management.entity.dto.request.GetTableRequest;
 import hust.project.restaurant_management.entity.dto.request.UpdateTableRequest;
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
@@ -13,6 +14,8 @@ public interface ITableService {
     TableEntity createTable(CreateTableRequest request);
 
     Pair<PageInfo, List<TableEntity>> getAllTables(GetTableRequest filter);
+
+    List<TableEntity> getAllTablesAvailable(GetTableAvailableRequest filter);
 
     TableEntity getDetailTable(Long id);
 

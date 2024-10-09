@@ -2,6 +2,7 @@ package hust.project.restaurant_management.service.impl;
 
 import hust.project.restaurant_management.entity.TableEntity;
 import hust.project.restaurant_management.entity.dto.request.CreateTableRequest;
+import hust.project.restaurant_management.entity.dto.request.GetTableAvailableRequest;
 import hust.project.restaurant_management.entity.dto.request.GetTableRequest;
 import hust.project.restaurant_management.entity.dto.request.UpdateTableRequest;
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
@@ -32,6 +33,11 @@ public class TableService implements ITableService {
     @Override
     public Pair<PageInfo, List<TableEntity>> getAllTables(GetTableRequest filter) {
         return getTableUseCase.getAllTables(filter);
+    }
+
+    @Override
+    public List<TableEntity> getAllTablesAvailable(GetTableAvailableRequest filter) {
+        return getTableUseCase.getAllTablesAvailable(filter);
     }
 
     @Override

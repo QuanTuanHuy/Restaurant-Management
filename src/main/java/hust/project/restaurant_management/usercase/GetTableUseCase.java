@@ -1,6 +1,7 @@
 package hust.project.restaurant_management.usercase;
 
 import hust.project.restaurant_management.entity.TableEntity;
+import hust.project.restaurant_management.entity.dto.request.GetTableAvailableRequest;
 import hust.project.restaurant_management.entity.dto.request.GetTableRequest;
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
 import hust.project.restaurant_management.port.ITablePort;
@@ -21,5 +22,9 @@ public class GetTableUseCase {
 
     public TableEntity getDetailTable(Long id) {
         return tablePort.getTableById(id);
+    }
+
+    public List<TableEntity> getAllTablesAvailable(GetTableAvailableRequest filter) {
+        return tablePort.getAllTablesAvailable(filter);
     }
 }

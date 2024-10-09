@@ -2,6 +2,7 @@ package hust.project.restaurant_management.repository.adapter;
 
 import hust.project.restaurant_management.constants.ErrorCode;
 import hust.project.restaurant_management.entity.TableEntity;
+import hust.project.restaurant_management.entity.dto.request.GetTableAvailableRequest;
 import hust.project.restaurant_management.entity.dto.request.GetTableRequest;
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
 import hust.project.restaurant_management.exception.AppException;
@@ -54,6 +55,16 @@ public class TableAdapter implements ITablePort {
     @Override
     public List<TableEntity> getAllTables() {
         return tableMapper.toEntitiesFromModels(tableRepository.findAll());
+    }
+
+    @Override
+    public List<TableEntity> getTablesByIds(List<Long> ids) {
+        return tableMapper.toEntitiesFromModels(tableRepository.findByIdIn(ids));
+    }
+
+    @Override
+    public List<TableEntity> getAllTablesAvailable(GetTableAvailableRequest filter) {
+        return tableMapper.toEntitiesFromModels(tableRepository.getAllTablesAvailable(filter));
     }
 
     @Override

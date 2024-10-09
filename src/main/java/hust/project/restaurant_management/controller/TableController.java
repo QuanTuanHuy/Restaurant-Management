@@ -4,8 +4,11 @@ import hust.project.restaurant_management.entity.dto.request.*;
 import hust.project.restaurant_management.entity.dto.response.Resource;
 import hust.project.restaurant_management.service.ITableService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequiredArgsConstructor
@@ -39,6 +42,17 @@ public class TableController {
                 .location(location).name(name).isActive(isActive)
                 .build();
         return ResponseEntity.ok(new Resource(tableService.getAllTables(filter)));
+    }
+
+    @GetMapping("/available")
+    public ResponseEntity<Resource> getAllTablesAvailable(
+            @RequestParam(name = "check_in_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime checkInTime,
+            @RequestParam(name = "check_out_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime checkOutTime
+    ) {
+        var filter = GetTableAvailableRequest.builder()
+                .checkInTime(checkInTime).checkOutTime(checkOutTime)
+                .build();
+        return ResponseEntity.ok(new Resource(tableService.getAllTablesAvailable(filter)));
     }
 
     @PatchMapping("/{id}")
