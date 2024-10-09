@@ -14,6 +14,8 @@ public interface IMenuItemPort {
 
     List<MenuItemEntity> getAllMenuItems();
 
+    List<MenuItemEntity> getMenuItemsByIds(List<Long> ids);
+
     List<MenuItemEntity> getMenuItemsByMenuSectionId(Long menuSectionId);
 
     MenuItemEntity getMenuItemById(Long id);

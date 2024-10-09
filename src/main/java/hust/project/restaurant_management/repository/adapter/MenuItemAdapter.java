@@ -57,6 +57,11 @@ public class MenuItemAdapter implements IMenuItemPort {
     }
 
     @Override
+    public List<MenuItemEntity> getMenuItemsByIds(List<Long> ids) {
+        return menuItemMapper.toEntitiesFromModels(menuItemRepository.findByIdIn(ids));
+    }
+
+    @Override
     public List<MenuItemEntity> getMenuItemsByMenuSectionId(Long menuSectionId) {
         return menuItemMapper.toEntitiesFromModels(menuItemRepository.findByMenuSectionId(menuSectionId));
     }
