@@ -1,0 +1,62 @@
+package hust.project.restaurant_management.repository.adapter;
+
+import hust.project.restaurant_management.constants.ErrorCode;
+import hust.project.restaurant_management.entity.OrderEntity;
+import hust.project.restaurant_management.entity.dto.request.GetOrderRequest;
+import hust.project.restaurant_management.entity.dto.response.PageInfo;
+import hust.project.restaurant_management.exception.AppException;
+import hust.project.restaurant_management.mapper.IOrderMapper;
+import hust.project.restaurant_management.model.OrderModel;
+import hust.project.restaurant_management.port.IOrderPort;
+import hust.project.restaurant_management.repository.IOrderRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.util.Pair;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class OrderAdapter implements IOrderPort {
+    private final IOrderRepository orderRepository;
+    private final IOrderMapper orderMapper;
+
+    @Override
+    public OrderEntity save(OrderEntity orderEntity) {
+        try {
+            OrderModel orderModel = orderMapper.toModelFromEntity(orderEntity);
+            return orderMapper.toEntityFromModel(orderRepository.save(orderModel));
+        } catch (Exception e) {
+            log.error("[OrderAdapter] save: error: {}", e.getMessage());
+            throw new AppException(ErrorCode.CREATE_ORDER_FAILED);
+        }
+    }
+
+    @Override
+    public Pair<PageInfo, List<OrderEntity>> getAllOrders(GetOrderRequest filter) {
+        return orderRepository.getAllOrders(filter);
+    }
+
+    @Override
+    public List<OrderEntity> getOrdersByIds(List<Long> ids) {
+        return orderMapper.toEntitiesFromModels(orderRepository.findByIdIn(ids));
+    }
+
+    @Override
+    public OrderEntity getOrderById(Long id) {
+        return orderMapper.toEntityFromModel(orderRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.ORDER_NOT_FOUND)));
+    }
+
+    @Override
+    public void deleteOrderById(Long id) {
+        try {
+            orderRepository.deleteById(id);
+        } catch (Exception e) {
+            log.error("[OrderAdapter] delete order failed error: {}", e.getMessage());
+            throw new AppException(ErrorCode.DELETE_ORDER_FAILED);
+        }
+    }
+}
