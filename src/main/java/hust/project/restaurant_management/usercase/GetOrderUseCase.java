@@ -52,7 +52,49 @@ public class GetOrderUseCase {
     }
 
     public Pair<PageInfo, List<OrderEntity>> getAllOrders(GetOrderRequest filter) {
-        return orderPort.getAllOrders(filter);
+        var result = orderPort.getAllOrders(filter);
+        var orders = result.getSecond();
+
+        List<Long> customerIds = orders.stream().map(OrderEntity::getCustomerId).toList();
+        List<CustomerEntity> customers = customerPort.getCustomersByIds(customerIds);
+
+        var mapIdToCustomer = customers.stream()
+                .collect(Collectors.toMap(CustomerEntity::getId, Function.identity()));
+
+
+        List<Long> orderIds = orders.stream().map(OrderEntity::getId).toList();
+
+        List<OrderItemEntity> orderItems = orderItemPort.getOrderItemsByOrderIds(orderIds);
+
+        List<Long> menuItemIds = orderItems.stream().map(OrderItemEntity::getMenuItemId).distinct().toList();
+        List<MenuItemEntity> menuItems = menuItemPort.getMenuItemsByIds(menuItemIds);
+
+        var mapIdToMenuItem = menuItems.stream()
+                .collect(Collectors.toMap(MenuItemEntity::getId, Function.identity()));
+
+        orderItems.forEach(orderItem ->
+                orderItem.setMenuItem(mapIdToMenuItem.getOrDefault(orderItem.getMenuItemId(), null)));
+
+
+        List<OrderTableEntity> orderTables = orderTablePort.getOrderTablesByOrderIds(orderIds);
+
+        List<Long> tableIds = orderTables.stream().map(OrderTableEntity::getTableId).distinct().toList();
+
+        List<TableEntity> tables = tablePort.getTablesByIds(tableIds);
+
+        var mapIdToTable = tables.stream().collect(Collectors.toMap(TableEntity::getId, Function.identity()));
+
+        orderTables.forEach(orderTable -> orderTable.setTable(mapIdToTable.getOrDefault(orderTable.getTableId(), null)));
+
+
+        orders.forEach(order -> {
+            order.setCustomer(mapIdToCustomer.getOrDefault(order.getCustomerId(), null));
+            order.setOrderItems(orderItems.stream()
+                    .filter(orderItem -> orderItem.getOrderId().equals(order.getId())).toList());
+            order.setOrderTables(orderTables.stream().filter(orderTable -> orderTable.getOrderId().equals(order.getId())).toList());
+        });
+
+        return Pair.of(result.getFirst(), orders);
     }
 
 }

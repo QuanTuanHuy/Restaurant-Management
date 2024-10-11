@@ -14,5 +14,7 @@ public interface ICustomerPort {
 
     CustomerEntity getCustomerById(Long id);
 
+    List<CustomerEntity> getCustomersByIds(List<Long> ids);
+
     void deleteCustomerById(Long id);
 }

@@ -57,8 +57,13 @@ public class OrderTableAdapter implements IOrderTablePort {
     }
 
     @Override
-    public List<OrderTableEntity> getAllOrderTablesByTableId(Long tableId) {
+    public List<OrderTableEntity> getOrderTablesByTableId(Long tableId) {
         return orderTableMapper.toEntitiesFromModels(orderTableRepository.findByTableId(tableId));
+    }
+
+    @Override
+    public List<OrderTableEntity> getOrderTablesByOrderIds(List<Long> orderIds) {
+        return orderTableMapper.toEntitiesFromModels(orderTableRepository.findByOrderIdIn(orderIds));
     }
 
     @Override

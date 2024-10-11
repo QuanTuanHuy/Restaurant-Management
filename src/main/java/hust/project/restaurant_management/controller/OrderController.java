@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,12 +39,14 @@ public class OrderController {
             @RequestParam(name = "end_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endTime,
             @RequestParam(name = "payment_method", required = false) String paymentMethod,
             @RequestParam(name = "user_id", required = false) Long userId,
-            @RequestParam(name = "customer_id", required = false) Long customerId
+            @RequestParam(name = "customer_id", required = false) Long customerId,
+            @RequestParam(name = "table_ids", required = false) List<Long> tableIds
     ) {
         var filter = GetOrderRequest.builder()
                 .page(page).pageSize(pageSize)
                 .orderStatus(orderStatus).startTime(startTime).endTime(endTime)
                 .paymentMethod(paymentMethod).userId(userId).customerId(customerId)
+                .tableIds(tableIds)
                 .build();
         return ResponseEntity.ok(new Resource(orderService.getAllOrders(filter)));
     }

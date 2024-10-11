@@ -3,6 +3,7 @@ package hust.project.restaurant_management.repository;
 import hust.project.restaurant_management.entity.OrderEntity;
 import hust.project.restaurant_management.entity.dto.request.GetOrderRequest;
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
+import hust.project.restaurant_management.model.OrderModel;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
@@ -19,15 +20,15 @@ public class CustomOrderRepositoryImpl implements CustomOrderRepository{
     private EntityManager entityManager;
 
     @Override
-    public Pair<PageInfo, List<OrderEntity>> getAllOrders(GetOrderRequest filter) {
+    public List<OrderModel> getAllOrders(GetOrderRequest filter) {
         String sql = "SELECT * FROM orders WHERE id IN\n" +
                 "(\n" +
-                "\tSELECT o.id\n" +
+                "\tSELECT DISTINCT o.id\n" +
                 "    FROM orders o JOIN order_tables ot ON o.id = ot.order_id\n" +
                 "    WHERE (o.check_in_time BETWEEN :startTime AND :endTime)\n";
 
         if (StringUtils.hasText(filter.getOrderStatus())) {
-            sql += "    AND o.status = '" + filter.getOrderStatus() + "'\n";
+            sql += "    AND o.order_status = '" + filter.getOrderStatus() + "'\n";
         }
         if (StringUtils.hasText(filter.getPaymentMethod())) {
             sql += "    AND o.payment_method = '" + filter.getPaymentMethod() + "'\n";
@@ -38,7 +39,7 @@ public class CustomOrderRepositoryImpl implements CustomOrderRepository{
         if (filter.getCustomerId() != null) {
             sql += "    AND o.customer_id = '" + filter.getCustomerId() + "'\n";
         }
-        if (!filter.getTableIds().isEmpty()) {
+        if (filter.getTableIds() != null && !filter.getTableIds().isEmpty()) {
             StringBuilder tableIds = new StringBuilder();
             for (int i = 0; i < filter.getTableIds().size(); i++) {
                 tableIds.append(filter.getTableIds().get(i));
@@ -51,16 +52,16 @@ public class CustomOrderRepositoryImpl implements CustomOrderRepository{
         }
 
         sql += "    ORDER BY o.check_in_time DESC\n" +
-                "    LIMIT " + filter.getPageSize() + " OFFSET " + filter.getPage() * filter.getPageSize() + "\n" +
                 ")";
+        sql +=
+                " LIMIT " + filter.getPageSize() + " OFFSET " + filter.getPage() * filter.getPageSize() + "\n";
 
-        Query query = entityManager.createNativeQuery(sql, OrderEntity.class);
-        List<OrderEntity> orders = query.getResultList();
+        Query query = entityManager.createNativeQuery(sql, OrderModel.class);
+        query.setParameter("startTime", filter.getStartTime());
+        query.setParameter("endTime", filter.getEndTime());
 
-        PageInfo pageInfo = PageInfo.builder()
-                .pageSize(filter.getPageSize())
-                .build();
+        List<OrderModel> orders = query.getResultList();
 
-        return Pair.of(pageInfo, orders);
+        return orders;
     }
 }

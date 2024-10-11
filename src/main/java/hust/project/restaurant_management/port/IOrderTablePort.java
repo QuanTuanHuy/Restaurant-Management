@@ -14,7 +14,9 @@ public interface IOrderTablePort {
 
     List<OrderTableEntity> getOrderTablesByOrderId(Long orderId);
 
-    List<OrderTableEntity> getAllOrderTablesByTableId(Long tableId);
+    List<OrderTableEntity> getOrderTablesByTableId(Long tableId);
+
+    List<OrderTableEntity> getOrderTablesByOrderIds(List<Long> orderIds);
 
     Pair<PageInfo, List<OrderTableEntity>> getAllOrderTables(GetOrderTableRequest filter);
 

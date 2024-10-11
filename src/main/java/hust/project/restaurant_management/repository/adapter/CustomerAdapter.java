@@ -58,6 +58,11 @@ public class CustomerAdapter implements ICustomerPort {
     }
 
     @Override
+    public List<CustomerEntity> getCustomersByIds(List<Long> ids) {
+        return customerMapper.toEntitiesFromModels(customerRepository.findByIdIn(ids));
+    }
+
+    @Override
     public void deleteCustomerById(Long id) {
         try {
             customerRepository.deleteById(id);

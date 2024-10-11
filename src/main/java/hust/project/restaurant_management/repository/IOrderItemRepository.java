@@ -10,4 +10,6 @@ public interface IOrderItemRepository extends IBaseRepository<OrderItemModel> {
     List<OrderItemModel> findByIdIn(List<Long> ids);
 
     List<OrderItemModel> findByOrderId(Long orderId);
+
+    List<OrderItemModel> findByOrderIdIn(List<Long> orderIds);
 }

@@ -48,6 +48,11 @@ public class OrderItemAdapter implements IOrderItemPort {
     }
 
     @Override
+    public List<OrderItemEntity> getOrderItemsByOrderIds(List<Long> orderIds) {
+        return orderItemMapper.toEntitiesFromModels(orderItemRepository.findByOrderIdIn(orderIds));
+    }
+
+    @Override
     public List<OrderItemEntity> getOrderItemsByIds(List<Long> ids) {
         return orderItemMapper.toEntitiesFromModels(orderItemRepository.findByIdIn(ids));
     }

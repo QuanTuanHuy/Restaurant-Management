@@ -13,5 +13,7 @@ public interface IOrderTableRepository extends IBaseRepository<OrderTableModel> 
 
     List<OrderTableModel> findByTableId(Long tableId);
 
+    List<OrderTableModel> findByOrderIdIn(List<Long> orderIds);
+
     void deleteByIdIn(List<Long> ids);
 }
