@@ -12,6 +12,8 @@ public interface IUserPort {
 
     UserEntity getUserByEmail(String email);
 
+    List<UserEntity> getUsersByIds(List<Long> ids);
+
     UserEntity getUserById(Long id);
 
     Pair<PageInfo, List<UserEntity>> getAllUsers(GetUserRequest filter);

@@ -45,6 +45,11 @@ public class UserAdapter implements IUserPort {
     }
 
     @Override
+    public List<UserEntity> getUsersByIds(List<Long> ids) {
+        return userMapper.toEntitiesFromModels(userRepository.findByIdIn(ids));
+    }
+
+    @Override
     public UserEntity getUserById(Long id) {
         return userMapper.toEntityFromModel(userRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND)));

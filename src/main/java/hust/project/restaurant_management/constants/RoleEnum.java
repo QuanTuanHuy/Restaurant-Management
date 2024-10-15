@@ -8,5 +8,5 @@ public enum RoleEnum {
     MANAGER,
     WAITER,
     CHEF,
-    CASHIER;
+    CASHIER
 }
