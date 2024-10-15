@@ -17,4 +17,6 @@ public interface IStockHistoryService {
     StockHistoryEntity getDetailStockHistory(Long id);
 
     StockHistoryEntity updateStockHistory(Long id, UpdateStockHistoryRequest request);
+
+    void deleteStockHistory(Long id);
 }

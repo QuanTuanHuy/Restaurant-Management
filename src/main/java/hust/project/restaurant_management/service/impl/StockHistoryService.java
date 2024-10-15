@@ -7,6 +7,7 @@ import hust.project.restaurant_management.entity.dto.request.UpdateStockHistoryR
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
 import hust.project.restaurant_management.service.IStockHistoryService;
 import hust.project.restaurant_management.usercase.CreateStockHistoryUseCase;
+import hust.project.restaurant_management.usercase.DeleteStockHistoryUseCase;
 import hust.project.restaurant_management.usercase.GetStockHistoryUseCase;
 import hust.project.restaurant_management.usercase.UpdateStockHistoryUseCase;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class StockHistoryService implements IStockHistoryService {
     private final CreateStockHistoryUseCase createStockHistoryUseCase;
     private final GetStockHistoryUseCase getStockHistoryUseCase;
     private final UpdateStockHistoryUseCase updateStockHistoryUseCase;
+    private final DeleteStockHistoryUseCase deleteStockHistoryUseCase;
 
     @Override
     public StockHistoryEntity createStockHistory(CreateStockHistoryRequest request) {
@@ -40,5 +42,10 @@ public class StockHistoryService implements IStockHistoryService {
     @Override
     public StockHistoryEntity updateStockHistory(Long id, UpdateStockHistoryRequest request) {
         return updateStockHistoryUseCase.updateStockHistory(id, request);
+    }
+
+    @Override
+    public void deleteStockHistory(Long id) {
+        deleteStockHistoryUseCase.deleteStockHistory(id);
     }
 }

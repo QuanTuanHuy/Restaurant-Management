@@ -66,4 +66,14 @@ public class StockHistoryAdapter implements IStockHistoryPort {
         var result = stockHistoryRepository.getMaxId();
         return result == null ? 0L : result;
     }
+
+    @Override
+    public void deleteStockHistoryById(Long id) {
+        try {
+            stockHistoryRepository.deleteById(id);
+        } catch (Exception e) {
+            log.error("[StockHistoryAdapter] delete stock history failed: {}", e.getMessage());
+            throw new AppException(ErrorCode.DELETE_STOCK_HISTORY_FAILED);
+        }
+    }
 }

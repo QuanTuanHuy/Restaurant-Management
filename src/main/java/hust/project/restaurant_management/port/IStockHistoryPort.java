@@ -15,4 +15,6 @@ public interface IStockHistoryPort {
     StockHistoryEntity getStockHistoryById(Long id);
 
     Long getMaxId();
+
+    void deleteStockHistoryById(Long id);
 }

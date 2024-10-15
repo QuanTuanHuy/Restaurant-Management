@@ -46,4 +46,13 @@ public class StockHistoryController {
         return ResponseEntity.ok(new Resource(stockHistoryService.updateStockHistory(id, request)));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Resource> deleteStockHistory(
+            @PathVariable(name = "id") Long id
+    ) {
+        stockHistoryService.deleteStockHistory(id);
+        return ResponseEntity.ok(new Resource(null));
+    }
+
+
 }

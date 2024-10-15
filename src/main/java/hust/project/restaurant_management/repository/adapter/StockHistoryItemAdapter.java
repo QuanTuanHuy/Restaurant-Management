@@ -66,4 +66,14 @@ public class StockHistoryItemAdapter implements IStockHistoryItemPort {
             throw new AppException(ErrorCode.DELETE_STOCK_HISTORY_ITEM_FAILED);
         }
     }
+
+    @Override
+    public void deleteStockHistoryItemsByStockHistoryId(Long stockHistoryId) {
+        try {
+            stockHistoryItemRepository.deleteByStockHistoryId(stockHistoryId);
+        } catch (Exception e) {
+            log.error("[StockHistoryItemAdapter] delete stock history item failed: {}", e.getMessage());
+            throw new AppException(ErrorCode.DELETE_STOCK_HISTORY_ITEM_FAILED);
+        }
+    }
 }

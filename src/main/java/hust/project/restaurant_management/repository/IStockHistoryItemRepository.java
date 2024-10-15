@@ -14,4 +14,6 @@ public interface IStockHistoryItemRepository extends IBaseRepository<StockHistor
     List<StockHistoryItemModel> findByStockHistoryIdIn(List<Long> stockHistoryIds);
 
     void deleteByIdIn(List<Long> ids);
+
+    void deleteByStockHistoryId(Long stockHistoryId);
 }

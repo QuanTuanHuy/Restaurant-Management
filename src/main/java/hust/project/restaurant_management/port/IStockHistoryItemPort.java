@@ -16,4 +16,6 @@ public interface IStockHistoryItemPort {
     List<StockHistoryItemEntity> getStockHistoryItemsByProductId(Long productId);
 
     void deleteStockHistoryItemsByIds(List<Long> ids);
+
+    void deleteStockHistoryItemsByStockHistoryId(Long stockHistoryId);
 }
