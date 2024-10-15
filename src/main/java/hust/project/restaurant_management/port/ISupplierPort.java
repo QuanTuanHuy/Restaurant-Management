@@ -14,5 +14,7 @@ public interface ISupplierPort {
 
     SupplierEntity getSupplierById(Long id);
 
+    List<SupplierEntity> getSuppliersByIds(List<Long> ids);
+
     Long getMaxId();
 }

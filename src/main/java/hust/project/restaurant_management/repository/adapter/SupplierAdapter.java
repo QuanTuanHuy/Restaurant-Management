@@ -60,6 +60,11 @@ public class SupplierAdapter implements ISupplierPort {
     }
 
     @Override
+    public List<SupplierEntity> getSuppliersByIds(List<Long> ids) {
+        return supplierMapper.toEntitiesFromModels(supplierRepository.findByIdIn(ids));
+    }
+
+    @Override
     public Long getMaxId() {
         var result = supplierRepository.getMaxId();
         return result == null ? 0L : result;
