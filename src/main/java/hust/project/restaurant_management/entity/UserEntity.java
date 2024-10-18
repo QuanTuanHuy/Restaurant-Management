@@ -1,5 +1,6 @@
 package hust.project.restaurant_management.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public class UserEntity {
 
     private String email;
 
+    @JsonIgnore
     private String password;
 
     private String name;
