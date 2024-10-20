@@ -2,6 +2,7 @@ package hust.project.restaurant_management.controller;
 
 import hust.project.restaurant_management.entity.dto.request.*;
 import hust.project.restaurant_management.entity.dto.response.Resource;
+import hust.project.restaurant_management.service.IOrderItemKitchenService;
 import hust.project.restaurant_management.service.IOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,6 +20,7 @@ public class OrderController {
     public static final String DEFAULT_PAGE_SIZE = "30";
 
     private final IOrderService orderService;
+    private final IOrderItemKitchenService orderItemKitchenService;
 
     @PostMapping
     public ResponseEntity<Resource> createOrder(@RequestBody CreateOrderRequest request) {
@@ -57,6 +59,7 @@ public class OrderController {
             @RequestBody AddMenuItemsToOrderRequest request
     ) {
         orderService.addMenuItemsToOrder(id, request);
+        orderItemKitchenService.createOrderItemKitchens(id, request);
         return ResponseEntity.ok(new Resource(null));
     }
 
@@ -68,7 +71,7 @@ public class OrderController {
         return ResponseEntity.ok(new Resource(orderService.updateOrder(id, request)));
     }
 
-    @PatchMapping("/{id}/status")
+    @PutMapping("/{id}/status")
     public ResponseEntity<Resource> updateOrderStatus(
             @PathVariable(name = "id") Long id,
             @RequestBody UpdateOrderStatusRequest request
