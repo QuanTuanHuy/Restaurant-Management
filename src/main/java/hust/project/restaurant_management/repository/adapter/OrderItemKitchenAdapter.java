@@ -64,4 +64,14 @@ public class OrderItemKitchenAdapter implements IOrderItemKitchenPort {
         return orderItemKitchenMapper.toEntitiesFromModels(orderItemKitchenRepository
                 .findByStatusOrderByReceivedTimeDesc(OrderItemKitchenStatusEnum.valueOf(status).name()));
     }
+
+    @Override
+    public void deleteOrderItemKitchensByIds(List<Long> ids) {
+        try {
+            orderItemKitchenRepository.deleteByIdIn(ids);
+        } catch (Exception e) {
+            log.error("[OrderItemKitchenAdapter] delete order item kitchens failed: {}", e.getMessage());
+            throw new AppException(ErrorCode.DELETE_ORDER_ITEM_KITCHEN_FAILED);
+        }
+    }
 }

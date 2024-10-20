@@ -10,4 +10,6 @@ public interface IOrderItemKitchenRepository extends IBaseRepository<OrderItemKi
     List<OrderItemKitchenModel> findByStatusOrderByReceivedTimeDesc(String status);
 
     List<OrderItemKitchenModel> findByIdIn(List<Long> ids);
+
+    void deleteByIdIn(List<Long> ids);
 }

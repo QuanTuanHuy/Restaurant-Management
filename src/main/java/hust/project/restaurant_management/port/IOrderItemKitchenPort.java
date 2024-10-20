@@ -15,4 +15,6 @@ public interface IOrderItemKitchenPort {
     List<OrderItemKitchenEntity> getOrderItemKitchensByIds(List<Long> ids);
 
     List<OrderItemKitchenEntity> getOrderItemKitchensByStatus(String status);
+
+    void deleteOrderItemKitchensByIds(List<Long> ids);
 }

@@ -31,8 +31,6 @@ public class OrderEntity {
 
     private Long paymentId;
 
-    private String paymentStatus;
-
     private String paymentMethod;
 
     private CustomerEntity customer;

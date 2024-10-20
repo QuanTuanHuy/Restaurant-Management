@@ -5,6 +5,7 @@ import hust.project.restaurant_management.entity.dto.request.GetOrderItemKitchen
 import hust.project.restaurant_management.model.OrderItemKitchenModel;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 
@@ -13,8 +14,10 @@ public class OrderItemKitchenSpecification {
         return (root, query, builder) -> {
             var predicates = new ArrayList<Predicate>();
 
-            predicates.add(builder.equal(root.get("status"),
-                    OrderItemKitchenStatusEnum.valueOf(filter.getStatus()).name()));
+            if (StringUtils.hasText(filter.getStatus())) {
+                predicates.add(builder.equal(root.get("status"),
+                        OrderItemKitchenStatusEnum.valueOf(filter.getStatus()).name()));
+            }
 
             if (filter.getOrderId() != null) {
                 predicates.add(builder.equal(root.get("orderId"), filter.getOrderId()));

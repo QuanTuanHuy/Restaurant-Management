@@ -17,7 +17,7 @@ public class OrderItemKitchenController {
 
     @GetMapping
     public ResponseEntity<Resource> getAll(
-            @RequestParam(name = "status") String status,
+            @RequestParam(name = "status", required = false) String status,
             @RequestParam(name = "order_id", required = false) Long orderId,
             @RequestParam(name = "table_id", required = false) Long tableId
     ) {

@@ -44,9 +44,6 @@ public class OrderModel {
     @Column(name = "payment_id")
     private Long paymentId;
 
-    @Column(name = "payment_status")
-    private String paymentStatus;
-
     @Column(name = "payment_method")
     private String paymentMethod;
 }
