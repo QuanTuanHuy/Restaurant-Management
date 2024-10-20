@@ -5,6 +5,7 @@ import hust.project.restaurant_management.entity.dto.request.GetOrderRequest;
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
 import org.springframework.data.util.Pair;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface IOrderPort {
@@ -15,6 +16,8 @@ public interface IOrderPort {
     List<OrderEntity> getOrdersByIds(List<Long> ids);
 
     OrderEntity getOrderById(Long id);
+
+    List<OrderEntity> getOrdersInTimeRangeAndStatus(LocalDateTime startTime, LocalDateTime endTime, String status);
 
     void deleteOrderById(Long id);
 }
