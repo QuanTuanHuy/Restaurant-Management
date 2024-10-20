@@ -1,16 +1,10 @@
 package hust.project.restaurant_management.usercase;
 
 import hust.project.restaurant_management.constants.StockHistoryStatusEnum;
-import hust.project.restaurant_management.entity.StockHistoryEntity;
-import hust.project.restaurant_management.entity.StockHistoryItemEntity;
-import hust.project.restaurant_management.entity.SupplierEntity;
-import hust.project.restaurant_management.entity.UserEntity;
+import hust.project.restaurant_management.entity.*;
 import hust.project.restaurant_management.entity.dto.request.CreateStockHistoryRequest;
 import hust.project.restaurant_management.mapper.IStockHistoryMapper;
-import hust.project.restaurant_management.port.IStockHistoryItemPort;
-import hust.project.restaurant_management.port.IStockHistoryPort;
-import hust.project.restaurant_management.port.ISupplierPort;
-import hust.project.restaurant_management.port.IUserPort;
+import hust.project.restaurant_management.port.*;
 import hust.project.restaurant_management.utils.GenerateCodeUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +24,7 @@ public class CreateStockHistoryUseCase {
     private final ISupplierPort supplierPort;
     private final IUserPort userPort;
     private final UpdateStockUseCase updateStockUseCase;
+    private final IActivityLogPort activityLogPort;
 
     @Transactional
     public StockHistoryEntity createStockHistory(CreateStockHistoryRequest request) {
@@ -69,6 +64,13 @@ public class CreateStockHistoryUseCase {
 
         if(stockHistory.getStatus().equals(StockHistoryStatusEnum.DONE.name())) {
             updateStockUseCase.syncStock(stockHistoryId);
+
+            activityLogPort.save(ActivityLogEntity.builder()
+                            .userId(user.getId())
+                            .userName(user.getName())
+                            .action("Nhập hàng")
+                            .amount(totalPrice)
+                    .build());
         }
 
         return saveStockHistory;

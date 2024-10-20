@@ -1,18 +1,13 @@
 package hust.project.restaurant_management.usercase;
 
+import hust.project.restaurant_management.constants.ActivityLogActionEnum;
 import hust.project.restaurant_management.constants.ErrorCode;
 import hust.project.restaurant_management.constants.StockHistoryStatusEnum;
-import hust.project.restaurant_management.entity.StockHistoryEntity;
-import hust.project.restaurant_management.entity.StockHistoryItemEntity;
-import hust.project.restaurant_management.entity.SupplierEntity;
-import hust.project.restaurant_management.entity.UserEntity;
+import hust.project.restaurant_management.entity.*;
 import hust.project.restaurant_management.entity.dto.request.UpdateStockHistoryItemRequest;
 import hust.project.restaurant_management.entity.dto.request.UpdateStockHistoryRequest;
 import hust.project.restaurant_management.exception.AppException;
-import hust.project.restaurant_management.port.IStockHistoryItemPort;
-import hust.project.restaurant_management.port.IStockHistoryPort;
-import hust.project.restaurant_management.port.ISupplierPort;
-import hust.project.restaurant_management.port.IUserPort;
+import hust.project.restaurant_management.port.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -36,6 +31,7 @@ public class UpdateStockHistoryUseCase {
     private final ISupplierPort supplierPort;
     private final IUserPort userPort;
     private final UpdateStockUseCase updateStockUseCase;
+    private final IActivityLogPort activityLogPort;
 
     @Transactional
     public StockHistoryEntity updateStockHistory(Long id, UpdateStockHistoryRequest request) {
@@ -118,6 +114,12 @@ public class UpdateStockHistoryUseCase {
 
         if(savedStockHistory.getStatus().equals(StockHistoryStatusEnum.DONE.name())) {
             updateStockUseCase.syncStock(id);
+            activityLogPort.save(ActivityLogEntity.builder()
+                            .userId(user.getId())
+                            .userName(user.getName())
+                            .action(ActivityLogActionEnum.IMPORT_PRODUCT.name())
+                            .amount(savedStockHistory.getTotalPrice())
+                    .build());
         }
 
         return savedStockHistory;
