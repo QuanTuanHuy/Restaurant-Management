@@ -3,19 +3,10 @@ package hust.project.restaurant_management.usercase;
 import hust.project.restaurant_management.constants.ErrorCode;
 import hust.project.restaurant_management.constants.OrderItemStatusEnum;
 import hust.project.restaurant_management.constants.OrderStatusEnum;
-import hust.project.restaurant_management.entity.OrderEntity;
-import hust.project.restaurant_management.entity.OrderItemEntity;
-import hust.project.restaurant_management.entity.OrderTableEntity;
-import hust.project.restaurant_management.entity.TableEntity;
-import hust.project.restaurant_management.entity.dto.request.AddMenuItemsToOrderRequest;
-import hust.project.restaurant_management.entity.dto.request.GetTableAvailableRequest;
-import hust.project.restaurant_management.entity.dto.request.UpdateOrderRequest;
-import hust.project.restaurant_management.entity.dto.request.UpdateOrderStatusRequest;
+import hust.project.restaurant_management.entity.*;
+import hust.project.restaurant_management.entity.dto.request.*;
 import hust.project.restaurant_management.exception.AppException;
-import hust.project.restaurant_management.port.IOrderItemPort;
-import hust.project.restaurant_management.port.IOrderPort;
-import hust.project.restaurant_management.port.IOrderTablePort;
-import hust.project.restaurant_management.port.ITablePort;
+import hust.project.restaurant_management.port.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,7 +24,7 @@ public class UpdateOrderUseCase {
     private final IOrderTablePort orderTablePort;
     private final ITablePort tablePort;
     private final IOrderItemPort orderItemPort;
-//    private final IMenuItemPort menuItemPort;
+    private final IMenuItemPort menuItemPort;
 
     @Transactional
     public OrderEntity updateOrder(Long id, UpdateOrderRequest request) {
@@ -47,6 +38,11 @@ public class UpdateOrderUseCase {
 
         if (order.getOrderStatus().equals(OrderStatusEnum.CONFIRMED.name())) {
             order.setCheckInTime(request.getCheckInTime());
+        }
+
+        if (request.getCheckOutTime().isBefore(order.getCheckInTime())) {
+            log.error("[UpdateOrderUseCase] invalid time range for order");
+            throw new AppException((ErrorCode.UPDATE_ORDER_FAILED));
         }
 
         order.setCheckOutTime(request.getCheckOutTime());
@@ -64,8 +60,8 @@ public class UpdateOrderUseCase {
 
         HashSet<Long> availableTableIds = (HashSet<Long>)
                 tablePort.getAllTablesAvailable(GetTableAvailableRequest.builder()
-                            .checkInTime(request.getCheckInTime())
-                            .checkOutTime(request.getCheckOutTime())
+                            .checkInTime(order.getCheckInTime())
+                            .checkOutTime(order.getCheckOutTime())
                             .build())
                     .stream()
                     .map(TableEntity::getId)
@@ -103,19 +99,19 @@ public class UpdateOrderUseCase {
 
         List<OrderItemEntity> modifiedOrderItems = new ArrayList<>();
 
-//        List<MenuItemEntity> menuItems = menuItemPort.getMenuItemsByIds(
-//                request.getMenuItemsQuantity().stream().map(MenuItemQuantityRequest::getMenuItemId).toList()
-//        );
-//        Map<Long, MenuItemEntity> mapIdToMenuItem = menuItems.stream()
-//                        .collect(Collectors.toMap(MenuItemEntity::getId, Function.identity()));
+
+        List<MenuItemEntity> menuItems = menuItemPort.getMenuItemsByIds(
+                request.getMenuItemsQuantity().stream().map(MenuItemQuantityRequest::getMenuItemId).toList()
+        );
+        if (menuItems.size() != request.getMenuItemsQuantity().size()) {
+            log.error("[UpdateOrderUseCase] add menu items to order failed: Menu item not found");
+            throw new AppException(ErrorCode.MENU_ITEM_NOT_FOUND);
+        }
+
 
         request.getMenuItemsQuantity().forEach(menuItemQuantity -> {
             Long menuItemId = menuItemQuantity.getMenuItemId();
             Long quantity = menuItemQuantity.getQuantity();
-            if (quantity <= 0) {
-                log.error("[UpdateOrderUseCase] addMenuItemsToOrder error: Invalid quantity");
-                throw new AppException(ErrorCode.MENU_ITEM_QUANTITY_INVALID);
-            }
 
             if (mapMenuItemIdToOrderItem.containsKey(menuItemId)) {
                 OrderItemEntity orderItem = mapMenuItemIdToOrderItem.get(menuItemId);
@@ -147,6 +143,7 @@ public class UpdateOrderUseCase {
         validateOrderStatus(order.getOrderStatus(), OrderStatusEnum.valueOf(request.getStatus()).name());
 
         order.setOrderStatus(request.getStatus());
+
         orderPort.save(order);
     }
 

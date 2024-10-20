@@ -11,6 +11,8 @@ public interface IOrderItemPort {
 
     List<OrderItemEntity> getOrderItemsByOrderId(Long orderId);
 
+    OrderItemEntity getOrderItemsByOrderIdAndMenuItemId(Long orderId, Long menuItemId);
+
     List<OrderItemEntity> getOrderItemsByOrderIds(List<Long> orderIds);
 
     List<OrderItemEntity> getOrderItemsByIds(List<Long> ids);

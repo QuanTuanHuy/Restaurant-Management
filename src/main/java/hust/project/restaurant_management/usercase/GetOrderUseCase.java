@@ -29,24 +29,30 @@ public class GetOrderUseCase {
         order.setCustomer(customer);
 
         List<OrderItemEntity> orderItems = orderItemPort.getOrderItemsByOrderId(id);
-        List<MenuItemEntity> menuItems = menuItemPort.getMenuItemsByIds(
-                orderItems.stream().map(OrderItemEntity::getMenuItemId).toList()
-        );
 
-        var mapIdToMenuItem = menuItems.stream().collect(Collectors.toMap(MenuItemEntity::getId, Function.identity()));
-        orderItems.forEach(orderItem -> orderItem.setMenuItem(mapIdToMenuItem.getOrDefault(orderItem.getMenuItemId(), null)));
+        if (!orderItems.isEmpty()) {
+            List<MenuItemEntity> menuItems = menuItemPort.getMenuItemsByIds(
+                    orderItems.stream().map(OrderItemEntity::getMenuItemId).toList()
+            );
 
-        order.setOrderItems(orderItems);
+            var mapIdToMenuItem = menuItems.stream().collect(Collectors.toMap(MenuItemEntity::getId, Function.identity()));
+            orderItems.forEach(orderItem -> orderItem.setMenuItem(mapIdToMenuItem.getOrDefault(orderItem.getMenuItemId(), null)));
+
+            order.setOrderItems(orderItems);
+        }
 
         List<OrderTableEntity> orderTables = orderTablePort.getOrderTablesByOrderId(id);
-        List<TableEntity> tables = tablePort.getTablesByIds(
-                orderTables.stream().map(OrderTableEntity::getTableId).toList()
-        );
 
-        for (var orderTable : orderTables) {
-            orderTable.setTable(tables.stream().filter(table -> table.getId().equals(orderTable.getTableId())).findFirst().orElse(null));
+        if (!orderTables.isEmpty()) {
+            List<TableEntity> tables = tablePort.getTablesByIds(
+                    orderTables.stream().map(OrderTableEntity::getTableId).toList()
+            );
+
+            for (var orderTable : orderTables) {
+                orderTable.setTable(tables.stream().filter(table -> table.getId().equals(orderTable.getTableId())).findFirst().orElse(null));
+            }
+            order.setOrderTables(orderTables);
         }
-        order.setOrderTables(orderTables);
 
         return order;
     }
@@ -54,6 +60,10 @@ public class GetOrderUseCase {
     public Pair<PageInfo, List<OrderEntity>> getAllOrders(GetOrderRequest filter) {
         var result = orderPort.getAllOrders(filter);
         var orders = result.getSecond();
+
+        if (orders.isEmpty()) {
+            return result;
+        }
 
         List<Long> customerIds = orders.stream().map(OrderEntity::getCustomerId).toList();
         List<CustomerEntity> customers = customerPort.getCustomersByIds(customerIds);
