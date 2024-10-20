@@ -52,6 +52,7 @@ public class GetStatisticByMenuItemUseCase {
                 .map(entry -> {
                     MenuItemEntity menuItem = mapIdToMenuItem.get(entry.getKey());
                     return MenuItemStatisticResponse.builder()
+                            .menuItemId(menuItem.getId())
                             .menuItemName(menuItem.getTitle())
                             .quantity(entry.getValue().stream().mapToLong(OrderItemEntity::getOrderedQuantity).sum())
                             .revenue(entry.getValue().stream().mapToDouble(OrderItemEntity::getPrice).sum())
