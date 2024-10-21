@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class StatisticByRevenueResponse {
+public class StatisticByRevenueAndDateResponse {
     private Double totalRevenue;
     List<RevenueStatisticPerDateResponse> revenueStatistics;
 }

@@ -22,26 +22,48 @@ import java.time.LocalDateTime;
 public class StatisticController {
     private final IStatisticService statisticService;
 
-    @GetMapping("/by_revenue")
-    public ResponseEntity<Resource> getStatisticByRevenue(
+    @GetMapping("/by_revenue_and_date")
+    public ResponseEntity<Resource> getStatisticByRevenueAndDate(
             @RequestParam(name = "start_date") LocalDate startDate,
             @RequestParam(name = "end_date") LocalDate endDate
     ) {
         var request = GetStatisticByRevenueRequest.builder()
                 .startDate(startDate).endDate(endDate)
                 .build();
-        return ResponseEntity.ok(new Resource(statisticService.getStatisticByRevenue(request)));
+        return ResponseEntity.ok(new Resource(statisticService.getStatisticByRevenueAndDate(request)));
     }
 
-    @GetMapping("/by_customer")
-    public ResponseEntity<Resource> getStatisticByCustomer(
+    @GetMapping("/by_revenue_and_hour")
+    public ResponseEntity<Resource> getStatisticByRevenueAndHour(
+            @RequestParam(name = "start_date") LocalDate startDate,
+            @RequestParam(name = "end_date") LocalDate endDate
+    ) {
+        var request = GetStatisticByRevenueRequest.builder()
+                .startDate(startDate).endDate(endDate)
+                .build();
+        return ResponseEntity.ok(new Resource(statisticService.getStatisticByRevenueAndHour(request)));
+    }
+
+    @GetMapping("/by_customer_and_date")
+    public ResponseEntity<Resource> getStatisticByCustomerAndDate(
             @RequestParam(name = "start_date") LocalDate startDate,
             @RequestParam(name = "end_date") LocalDate endDate
     ) {
         var request = GetStatisticByCustomerRequest.builder()
                 .startDate(startDate).endDate(endDate)
                 .build();
-        return ResponseEntity.ok(new Resource(statisticService.getStatisticByCustomer(request)));
+        return ResponseEntity.ok(new Resource(statisticService.getStatisticByCustomerAndDate(request)));
+    }
+
+    @GetMapping("/by_customer_and_hour")
+    public ResponseEntity<Resource> getStatisticByCustomerAndHour(
+            @RequestParam(name = "start_date") LocalDate startDate,
+            @RequestParam(name = "end_date") LocalDate endDate
+    ) {
+        var request = GetStatisticByCustomerRequest.builder()
+                .startDate(startDate).endDate(endDate)
+                .build();
+        return ResponseEntity.ok(new Resource(statisticService.getStatisticByCustomerAndHour(request)));
     }
 
     @GetMapping("/by_menu_item")

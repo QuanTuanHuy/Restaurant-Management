@@ -81,29 +81,56 @@ public class GetStatisticUseCase {
                 .build();
     }
 
-    public StatisticByCustomerResponse getStatisticByCustomer(GetStatisticByCustomerRequest request) {
+    public StatisticByCustomerAndDateResponse getStatisticByCustomer(GetStatisticByCustomerRequest request) {
         validateTimeRange(request.getStartDate(), request.getEndDate());
 
         var customerStatistics = customStatisticRepository.getStatisticByCustomer(request);
 
         Long totalCustomer = customerStatistics.stream().mapToLong(CustomerStatisticPerDateResponse::getCount).sum();
 
-        return StatisticByCustomerResponse.builder()
+        return StatisticByCustomerAndDateResponse.builder()
                 .totalCustomer(totalCustomer)
                 .customerStatistics(customerStatistics)
                 .build();
     }
 
-    public StatisticByRevenueResponse getStatisticByRevenue(GetStatisticByRevenueRequest request) {
+    public StatisticByRevenueAndDateResponse getStatisticByRevenue(GetStatisticByRevenueRequest request) {
         validateTimeRange(request.getStartDate(), request.getEndDate());
 
         var revenueStatistics = customStatisticRepository.getStatisticByRevenue(request);
 
         Double totalRevenue = revenueStatistics.stream().mapToDouble(RevenueStatisticPerDateResponse::getRevenue).sum();
 
-        return StatisticByRevenueResponse.builder()
+        return StatisticByRevenueAndDateResponse.builder()
                 .totalRevenue(totalRevenue)
                 .revenueStatistics(revenueStatistics)
+                .build();
+    }
+
+    public StatisticByRevenueAndHourResponse getStatisticByRevenueAndHour(GetStatisticByRevenueRequest request) {
+        validateTimeRange(request.getStartDate(), request.getEndDate());
+
+        var revenueStatistics = customStatisticRepository.getStatisticByRevenueAndHour(request);
+
+        Double totalRevenue = revenueStatistics.stream().mapToDouble(RevenueStatisticPerHourResponse::getRevenue).sum();
+
+        return StatisticByRevenueAndHourResponse.builder()
+                .totalRevenue(totalRevenue)
+                .revenueStatistics(revenueStatistics)
+                .build();
+
+    }
+
+    public StatisticByCustomerAndHourResponse getStatisticByCustomerAndHour(GetStatisticByCustomerRequest request) {
+        validateTimeRange(request.getStartDate(), request.getEndDate());
+
+        var customerStatistics = customStatisticRepository.getStatisticByCustomerAndHour(request);
+
+        Integer totalCustomer = customerStatistics.stream().mapToInt(CustomerStatisticPerHourResponse::getCount).sum();
+
+        return StatisticByCustomerAndHourResponse.builder()
+                .totalCustomer(totalCustomer)
+                .customerStatistics(customerStatistics)
                 .build();
     }
 
