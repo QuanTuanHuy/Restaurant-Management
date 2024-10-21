@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderModel {
+public class OrderModel extends AuditTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

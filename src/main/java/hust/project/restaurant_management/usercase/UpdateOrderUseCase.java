@@ -108,14 +108,20 @@ public class UpdateOrderUseCase {
             throw new AppException(ErrorCode.MENU_ITEM_NOT_FOUND);
         }
 
+        var mapIdToMenuItem = menuItems.stream()
+                .collect(Collectors.toMap(MenuItemEntity::getId, Function.identity()));
+
 
         request.getMenuItemsQuantity().forEach(menuItemQuantity -> {
             Long menuItemId = menuItemQuantity.getMenuItemId();
             Long quantity = menuItemQuantity.getQuantity();
 
+            Double sellingPricePerItem = mapIdToMenuItem.get(menuItemId).getSellingPrice();
+
             if (mapMenuItemIdToOrderItem.containsKey(menuItemId)) {
                 OrderItemEntity orderItem = mapMenuItemIdToOrderItem.get(menuItemId);
                 orderItem.setOrderedQuantity(orderItem.getOrderedQuantity() + quantity);
+                orderItem.setPrice(orderItem.getPrice() + sellingPricePerItem * quantity);
                 orderItem.setStatus(OrderItemStatusEnum.IN_PROGRESS.name());
                 modifiedOrderItems.add(orderItem);
             } else {
@@ -124,6 +130,7 @@ public class UpdateOrderUseCase {
                         .orderedQuantity(quantity)
                         .reservedQuantity(0L)
                         .menuItemId(menuItemId)
+                        .price(sellingPricePerItem * quantity)
                         .note(menuItemQuantity.getNote())
                         .status(OrderItemStatusEnum.IN_PROGRESS.name())
                         .build();
