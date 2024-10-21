@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RestController
@@ -23,22 +24,22 @@ public class StatisticController {
 
     @GetMapping("/by_revenue")
     public ResponseEntity<Resource> getStatisticByRevenue(
-            @RequestParam(name = "start_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startTime,
-            @RequestParam(name = "end_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endTime
+            @RequestParam(name = "start_date") LocalDate startDate,
+            @RequestParam(name = "end_date") LocalDate endDate
     ) {
         var request = GetStatisticByRevenueRequest.builder()
-                .startTime(startTime).endTime(endTime)
+                .startDate(startDate).endDate(endDate)
                 .build();
         return ResponseEntity.ok(new Resource(statisticService.getStatisticByRevenue(request)));
     }
 
     @GetMapping("/by_customer")
     public ResponseEntity<Resource> getStatisticByCustomer(
-            @RequestParam(name = "start_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startTime,
-            @RequestParam(name = "end_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endTime
+            @RequestParam(name = "start_date") LocalDate startDate,
+            @RequestParam(name = "end_date") LocalDate endDate
     ) {
         var request = GetStatisticByCustomerRequest.builder()
-                .startTime(startTime).endTime(endTime)
+                .startDate(startDate).endDate(endDate)
                 .build();
         return ResponseEntity.ok(new Resource(statisticService.getStatisticByCustomer(request)));
     }
@@ -47,10 +48,13 @@ public class StatisticController {
     public ResponseEntity<Resource> getStatisticByMenuItem(
             @RequestParam(name = "start_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startTime,
             @RequestParam(name = "end_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endTime,
-            @RequestParam(name = "category", defaultValue = "QUANTITY") String category
+            @RequestParam(name = "category", defaultValue = "QUANTITY") String category,
+            @RequestParam(name = "limit", defaultValue = "10") Integer limit
     ) {
         var request = GetStatisticByMenuItemRequest.builder()
-                .startTime(startTime).endTime(endTime).category(category)
+                .startTime(startTime).endTime(endTime)
+                .category(category)
+                .limit(limit)
                 .build();
         return ResponseEntity.ok(new Resource(statisticService.getStatisticByMenuItem(request)));
     }

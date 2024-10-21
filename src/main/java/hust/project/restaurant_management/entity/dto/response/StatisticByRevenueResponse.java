@@ -10,5 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class StatisticByRevenueResponse {
+    private Double totalRevenue;
     List<RevenueStatisticPerDateResponse> revenueStatistics;
 }

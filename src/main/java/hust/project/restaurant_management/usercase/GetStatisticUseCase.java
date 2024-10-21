@@ -1,19 +1,24 @@
 package hust.project.restaurant_management.usercase;
 
+import hust.project.restaurant_management.constants.ErrorCode;
 import hust.project.restaurant_management.constants.OrderStatusEnum;
 import hust.project.restaurant_management.entity.MenuItemEntity;
 import hust.project.restaurant_management.entity.OrderEntity;
 import hust.project.restaurant_management.entity.OrderItemEntity;
+import hust.project.restaurant_management.entity.dto.request.GetStatisticByCustomerRequest;
 import hust.project.restaurant_management.entity.dto.request.GetStatisticByMenuItemRequest;
-import hust.project.restaurant_management.entity.dto.response.MenuItemStatisticResponse;
-import hust.project.restaurant_management.entity.dto.response.StatisticByMenuItemResponse;
+import hust.project.restaurant_management.entity.dto.request.GetStatisticByRevenueRequest;
+import hust.project.restaurant_management.entity.dto.response.*;
+import hust.project.restaurant_management.exception.AppException;
 import hust.project.restaurant_management.port.IMenuItemPort;
 import hust.project.restaurant_management.port.IOrderItemPort;
 import hust.project.restaurant_management.port.IOrderPort;
+import hust.project.restaurant_management.repository.CustomStatisticRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -22,10 +27,12 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class GetStatisticByMenuItemUseCase {
+public class GetStatisticUseCase {
     private final IOrderPort orderPort;
     private final IMenuItemPort menuItemPort;
     private final IOrderItemPort orderItemPort;
+
+    private final CustomStatisticRepository customStatisticRepository;
 
     public StatisticByMenuItemResponse getStatisticByMenuItem(GetStatisticByMenuItemRequest request) {
         List<OrderEntity> orders = orderPort.getOrdersInTimeRangeAndStatus(request.getStartTime(), request.getEndTime(),
@@ -70,7 +77,40 @@ public class GetStatisticByMenuItemUseCase {
 
 
         return StatisticByMenuItemResponse.builder()
-                .menuItemStatistics(menuItemStatistics)
+                .menuItemStatistics(menuItemStatistics.subList(0, Math.min(request.getLimit(), menuItemStatistics.size())))
                 .build();
+    }
+
+    public StatisticByCustomerResponse getStatisticByCustomer(GetStatisticByCustomerRequest request) {
+        validateTimeRange(request.getStartDate(), request.getEndDate());
+
+        var customerStatistics = customStatisticRepository.getStatisticByCustomer(request);
+
+        Long totalCustomer = customerStatistics.stream().mapToLong(CustomerStatisticPerDateResponse::getCount).sum();
+
+        return StatisticByCustomerResponse.builder()
+                .totalCustomer(totalCustomer)
+                .customerStatistics(customerStatistics)
+                .build();
+    }
+
+    public StatisticByRevenueResponse getStatisticByRevenue(GetStatisticByRevenueRequest request) {
+        validateTimeRange(request.getStartDate(), request.getEndDate());
+
+        var revenueStatistics = customStatisticRepository.getStatisticByRevenue(request);
+
+        Double totalRevenue = revenueStatistics.stream().mapToDouble(RevenueStatisticPerDateResponse::getRevenue).sum();
+
+        return StatisticByRevenueResponse.builder()
+                .totalRevenue(totalRevenue)
+                .revenueStatistics(revenueStatistics)
+                .build();
+    }
+
+    private void validateTimeRange(LocalDate startDate, LocalDate endDate) {
+        if (endDate.isBefore(startDate)) {
+            log.error("[GetStatisticUseCase] Time range invalid");
+            throw new AppException(ErrorCode.TIME_INVALID);
+        }
     }
 }

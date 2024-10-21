@@ -13,4 +13,5 @@ public class GetStatisticByMenuItemRequest {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String category;
+    private Integer limit;
 }

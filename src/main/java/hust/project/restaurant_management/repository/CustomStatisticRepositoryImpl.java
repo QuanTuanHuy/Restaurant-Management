@@ -21,19 +21,19 @@ public class CustomStatisticRepositoryImpl implements CustomStatisticRepository{
     public List<RevenueStatisticPerDateResponse> getStatisticByRevenue(GetStatisticByRevenueRequest request) {
         String sql =
                         "WITH RECURSIVE date_range AS (\n" +
-                        "    SELECT DATE(:startTime) AS date\n" +
+                        "    SELECT DATE(:startDate) AS date\n" +
                         "    UNION ALL\n" +
                         "    SELECT date + INTERVAL 1 DAY\n" +
                         "    FROM date_range\n" +
-                        "    WHERE date + INTERVAL 1 DAY <= DATE(:endTime)\n" +
+                        "    WHERE date + INTERVAL 1 DAY <= DATE(:endDate)\n" +
                         ")\n" +
                         "SELECT date, SUM(IF(order_status = 'COMPLETED', total_cost, 0))\n" +
                         "FROM date_range LEFT JOIN orders ON DATE(check_in_time) = date\n" +
                         "GROUP BY date";
 
         Query query = entityManager.createNativeQuery(sql);
-        query.setParameter("startTime", request.getStartTime());
-        query.setParameter("endTime", request.getEndTime());
+        query.setParameter("startDate", request.getStartDate());
+        query.setParameter("endDate", request.getEndDate());
 
         List<Object[]> result = query.getResultList();
 
@@ -49,21 +49,22 @@ public class CustomStatisticRepositoryImpl implements CustomStatisticRepository{
     public List<CustomerStatisticPerDateResponse> getStatisticByCustomer(GetStatisticByCustomerRequest request) {
         String sql =
                         "WITH RECURSIVE date_range AS (\n" +
-                        "    SELECT DATE(:startTime) AS date\n" +
+                        "    SELECT DATE(:startDate) AS date\n" +
                         "    UNION ALL\n" +
                         "    SELECT date + INTERVAL 1 DAY\n" +
                         "    FROM date_range\n" +
-                        "    WHERE date + INTERVAL 1 DAY <= DATE(:endTime)\n" +
+                        "    WHERE date + INTERVAL 1 DAY <= DATE(:endDate)\n" +
                         ")\n" +
                         "SELECT date, SUM(IF(order_status = 'COMPLETED', number_of_people, 0))\n" +
                         "FROM date_range LEFT JOIN orders ON DATE(check_in_time) = date\n" +
                         "GROUP BY date";
 
         Query query = entityManager.createNativeQuery(sql);
-        query.setParameter("startTime", request.getStartTime());
-        query.setParameter("endTime", request.getEndTime());
+        query.setParameter("startDate", request.getStartDate());
+        query.setParameter("endDate", request.getEndDate());
 
         List<Object[]> result = query.getResultList();
+
 
         return result.stream()
                 .map(r -> CustomerStatisticPerDateResponse.builder()
