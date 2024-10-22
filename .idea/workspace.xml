@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="44e38475-5c3f-4326-8149-6f5d432de703" name="Changes" comment="statistic by hour feature">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/RestaurantManagementApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/config/CustomJwtDecoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/ActivityLogActionEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/ErrorCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/GenderEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/ImageTypeEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/OrderItemKitchenStatusEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/OrderItemStatusEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/OrderStatusEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/PaymentMethodEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/ProductStatusEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/ProductTypeEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/RoleEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/StockHistoryStatusEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/SupplierStatusEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/TableTypeEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/constants/WorkAttendanceStatusEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/ActivityLogController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/CustomerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/MenuItemController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/MenuSectionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/OrderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/OrderItemKitchenController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/PaymentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/RoleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/ShiftController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/StatisticController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/StockController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/StockHistoryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/SupplierController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/TableController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/WorkAttendanceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/controller/WorkScheduleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/ActivityLogEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/CustomerEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/ImageEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/MenuItemEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/MenuSectionEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/OrderEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/OrderItemEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/OrderItemKitchenEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/OrderTableEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/PaymentEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/ProductEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/RoleEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/ShiftEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/StockEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/StockHistoryEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/StockHistoryItemEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/SupplierEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/TableEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/UserEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/WorkAttendanceEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/WorkScheduleEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/AddMenuItemsToOrderRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/AuthenticationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateCustomerRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateMenuItemRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateMenuSectionRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateOrderRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreatePaymentRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateProductRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateRoleRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateShiftRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateStockHistoryItemRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateStockHistoryRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateSupplierRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateTableRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateUserRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/CreateWorkScheduleRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetActivityLogRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetCustomerRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetMenuItemRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetOrderItemKitchenRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetOrderRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetProductRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetStatisticByCustomerRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetStatisticByMenuItemRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetStatisticByRevenueRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetStockHistoryRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetSupplierRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetTableAvailableRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetTableRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetUserRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetWorkAttendanceRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/GetWorkScheduleRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/IntrospectRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/MenuItemQuantityRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/QuantityStockItemRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/QuantityStockRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateCustomerRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateMenuItemRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateMenuSectionRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateOrderItemKitchenStatusRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateOrderRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateOrderStatusRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateProductRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateShiftRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateStockHistoryItemRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateStockHistoryRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateSupplierRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateTableRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateUserRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/request/UpdateWorkAttendanceRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/AuthenticationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/CustomerStatisticPerDateResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/CustomerStatisticPerHourResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/IntrospectResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/MenuItemStatisticResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/MetaResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/PageInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/Resource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/RevenueStatisticPerDateResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/RevenueStatisticPerHourResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/StatisticByCustomerAndDateResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/StatisticByCustomerAndHourResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/StatisticByMenuItemResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/StatisticByRevenueAndDateResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/entity/dto/response/StatisticByRevenueAndHourResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/exception/AppException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IActivityLogMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/ICustomerMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IImageMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IMenuItemMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IMenuSectionMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IOrderItemKitchenMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IOrderItemMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IOrderMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IOrderTableMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IPaymentMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IProductMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IRoleMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IShiftMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IStockHistoryItemMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IStockHistoryMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IStockMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/ISupplierMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/ITableMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IUserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IWorkAttendanceMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/mapper/IWorkScheduleMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/ActivityLogModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/AuditTable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/CustomerModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/ImageModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/MenuItemModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/MenuSectionModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/OrderItemKitchenModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/OrderItemModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/OrderModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/OrderTableModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/PaymentModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/ProductModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/RoleModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/ShiftModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/StockHistoryItemModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/StockHistoryModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/StockModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/SupplierModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/TableModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/UserModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/WorkAttendanceModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/WorkScheduleModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IActivityLogPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/ICustomerPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IImagePort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IMenuItemPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IMenuSectionPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IOrderItemKitchenPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IOrderItemPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IOrderPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IOrderTablePort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IPaymentPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IProductPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IRolePort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IShiftPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IStockHistoryItemPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IStockHistoryPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IStockPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/ISupplierPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/ITablePort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IUserPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IWorkAttendancePort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/port/IWorkSchedulePort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomOrderRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomOrderRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomStatisticRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomStatisticRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomTableRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomTableRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomWorkAttendanceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomWorkAttendanceRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IActivityLogRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IBaseRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/ICustomerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IImageRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IMenuItemRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IMenuSectionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IOrderItemKitchenRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IOrderItemRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IOrderRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IOrderTableRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IPaymentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IProductRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IRoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IShiftRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IStockHistoryItemRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IStockHistoryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IStockRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/ISupplierRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/ITableRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IUserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IWorkAttendanceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/IWorkScheduleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/CustomerAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/IActivityLogAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/ImageAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/MenuItemAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/MenuSectionAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/OrderAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/OrderItemAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/OrderItemKitchenAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/OrderTableAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/PaymentAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/ProductAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/RoleAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/ShiftAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/StockAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/StockHistoryAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/StockHistoryItemAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/SupplierAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/TableAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/UserAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/WorkAttendanceAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/adapter/WorkScheduleAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/ActivityLogSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/CustomerSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/MenuItemSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/OrderItemKitchenSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/OrderTableSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/ProductSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/StockHistorySpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/SupplierSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/TableSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/UserSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/WorkScheduleSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IActivityLogService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IAuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/ICustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IMenuItemService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IMenuSectionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IOrderItemKitchenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IOrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IPaymentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IRoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IShiftService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IStatisticService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IStockHistoryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IStockService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/ISupplierService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/ITableService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IUserSecurityService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IWorkAttendanceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/IWorkScheduleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/WorkAttendanceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/ActivityLogService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/AuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/CustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/MenuItemService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/MenuSectionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/OrderItemKitchenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/OrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/PaymentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/RoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/ShiftService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/StatisticService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/StockHistoryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/StockService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/SupplierService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/TableService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/UserSecurityService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/service/impl/WorkScheduleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateCustomerUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateMenuItemUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateMenuSectionUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateOrderItemKitchenUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateOrderUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreatePaymentUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateProductUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateRoleUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateShiftUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateStockHistoryUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateSupplierUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateTableUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateUserUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateWorkAttendanceUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/CreateWorkScheduleUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/DeleteCustomerUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/DeleteMenuItemUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/DeleteMenuSectionUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/DeleteProductUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/DeleteRoleUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/DeleteShiftUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/DeleteStockHistoryUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/DeleteTableUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/DeleteWorkScheduleUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetActivityLogUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetCustomerUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetMenuItemUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetMenuSectionUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetOrderItemKitchenUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetOrderUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetProductUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetRoleUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetShiftUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetStatisticUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetStockHistoryUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetSupplierUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetTableUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetUserUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetWorkAttendanceUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/GetWorkScheduleUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateCustomerUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateMenuItemUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateMenuSectionUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateOrderItemKitchenUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateOrderUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateProductUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateShiftUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateStockHistoryUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateStockUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateSupplierUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateTableUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateUserUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/usercase/UpdateWorkAttendanceUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/utils/GenerateCodeUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/utils/PageInfoUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/hust/project/restaurant_management/RestaurantManagementApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="statistic-feature" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;QuanTuanHuy&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/QuanTuanHuy/Restaurant-Management.git&quot;,
+    &quot;accountId&quot;: &quot;027cde69-bcca-46c6-9569-51c6fd2bc91f&quot;
+  },
+  &quot;highlightDiffLinesInEditor&quot;: true
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/ActivityLogModel.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/OrderItemKitchenModel.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/OrderModel.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/PaymentModel.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/SupplierModel.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/WorkAttendanceModel.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/model/WorkScheduleModel.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomOrderRepositoryImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomStatisticRepositoryImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomTableRepositoryImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/CustomWorkAttendanceRepositoryImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/hust/project/restaurant_management/repository/specification/OrderTableSpecification.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2mxPlnUq73MjaQlDdFypCVI9P9Z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.restaurant_management [clean].executor": "Run",
+    "Maven.restaurant_management [compile].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.RestaurantManagementApplication.executor": "Run",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "salary-feature",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/User1/temp/project1/restaurant_management/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="hust.project.restaurant_management.entity.dto.request" />
+      <recent name="hust.project.restaurant_management.entity.dto.response" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\User1\temp\project1\restaurant_management" />
+      <recent name="D:\User1\temp\project1\restaurant_management\src\main\resources" />
+      <recent name="D:\User1\temp\project1\restaurant_management\src\main\java\hust\project\restaurant_management" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="hust.project.restaurant_management.repository.specification" />
+      <recent name="hust.project.restaurant_management.controller" />
+      <recent name="hust.project.restaurant_management.entity.dto.request" />
+      <recent name="hust.project.restaurant_management.entity" />
+      <recent name="hust.project.restaurant_management.model" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="RestaurantManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="restaurant_management" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="hust.project.restaurant_management.RestaurantManagementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="44e38475-5c3f-4326-8149-6f5d432de703" name="Changes" comment="" />
+      <created>1728015409299</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728015409299</updated>
+      <workItem from="1728015410480" duration="1982000" />
+      <workItem from="1728026597616" duration="4526000" />
+      <workItem from="1728052577229" duration="5876000" />
+      <workItem from="1728058507844" duration="125000" />
+      <workItem from="1728058642246" duration="5091000" />
+      <workItem from="1728139152293" duration="10170000" />
+      <workItem from="1728228494663" duration="5990000" />
+      <workItem from="1728376812626" duration="11807000" />
+      <workItem from="1728399619585" duration="342000" />
+      <workItem from="1728482988909" duration="9256000" />
+      <workItem from="1728531527848" duration="3833000" />
+      <workItem from="1728614817240" duration="8524000" />
+      <workItem from="1728631996727" duration="1553000" />
+      <workItem from="1728634096104" duration="2000" />
+      <workItem from="1728638242128" duration="166000" />
+      <workItem from="1728657497701" duration="10734000" />
+      <workItem from="1728818705079" duration="2940000" />
+      <workItem from="1728830174294" duration="10116000" />
+      <workItem from="1728872402787" duration="10822000" />
+      <workItem from="1728921196981" duration="1068000" />
+      <workItem from="1728985537764" duration="8675000" />
+      <workItem from="1729088294857" duration="9057000" />
+      <workItem from="1729178295755" duration="8835000" />
+      <workItem from="1729217585272" duration="7834000" />
+      <workItem from="1729352020163" duration="10308000" />
+      <workItem from="1729406028460" duration="2087000" />
+      <workItem from="1729416763089" duration="9461000" />
+      <workItem from="1729435869085" duration="8627000" />
+      <workItem from="1729500030420" duration="10902000" />
+      <workItem from="1729523512353" duration="7205000" />
+      <workItem from="1729563819648" duration="131000" />
+      <workItem from="1729563956638" duration="8000" />
+      <workItem from="1729564509271" duration="196000" />
+      <workItem from="1729564753343" duration="15000" />
+    </task>
+    <task id="LOCAL-00001" summary="init project">
+      <option name="closed" value="true" />
+      <created>1728059428314</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728059428314</updated>
+    </task>
+    <task id="LOCAL-00002" summary="menu section api">
+      <option name="closed" value="true" />
+      <created>1728148750541</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728148750541</updated>
+    </task>
+    <task id="LOCAL-00003" summary="menu item api">
+      <option name="closed" value="true" />
+      <created>1728148866650</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728148866650</updated>
+    </task>
+    <task id="LOCAL-00004" summary="api customer">
+      <option name="closed" value="true" />
+      <created>1728378430205</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728378430205</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix gender in customer api, user api">
+      <option name="closed" value="true" />
+      <created>1728378610394</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728378610394</updated>
+    </task>
+    <task id="LOCAL-00006" summary="table api">
+      <option name="closed" value="true" />
+      <created>1728380143652</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1728380143652</updated>
+    </task>
+    <task id="LOCAL-00007" summary="rename table name in mysql">
+      <option name="closed" value="true" />
+      <created>1728386910953</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728386910953</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add to table api">
+      <option name="closed" value="true" />
+      <created>1728489359080</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1728489359080</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add to menu item api">
+      <option name="closed" value="true" />
+      <created>1728489579603</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1728489579603</updated>
+    </task>
+    <task id="LOCAL-00010" summary="order table api">
+      <option name="closed" value="true" />
+      <created>1728619090014</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1728619090014</updated>
+    </task>
+    <task id="LOCAL-00011" summary="order item api">
+      <option name="closed" value="true" />
+      <created>1728619418550</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1728619418550</updated>
+    </task>
+    <task id="LOCAL-00012" summary="order api">
+      <option name="closed" value="true" />
+      <created>1728619680060</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728619680060</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix annotation">
+      <option name="closed" value="true" />
+      <created>1728620107852</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1728620107852</updated>
+    </task>
+    <task id="LOCAL-00014" summary="get order api">
+      <option name="closed" value="true" />
+      <created>1728626041518</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1728626041518</updated>
+    </task>
+    <task id="LOCAL-00015" summary="supplier api">
+      <option name="closed" value="true" />
+      <created>1728833163815</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1728833163815</updated>
+    </task>
+    <task id="LOCAL-00016" summary="image api">
+      <option name="closed" value="true" />
+      <created>1728988920735</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1728988920735</updated>
+    </task>
+    <task id="LOCAL-00017" summary="product api">
+      <option name="closed" value="true" />
+      <created>1728989168179</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1728989168179</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add to supplier api">
+      <option name="closed" value="true" />
+      <created>1728989316132</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1728989316132</updated>
+    </task>
+    <task id="LOCAL-00019" summary="add to user, role api">
+      <option name="closed" value="true" />
+      <created>1728989354746</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1728989354746</updated>
+    </task>
+    <task id="LOCAL-00020" summary="stock api">
+      <option name="closed" value="true" />
+      <created>1728991620082</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1728991620082</updated>
+    </task>
+    <task id="LOCAL-00021" summary="stock history api">
+      <option name="closed" value="true" />
+      <created>1728992510917</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1728992510917</updated>
+    </task>
+    <task id="LOCAL-00022" summary="delete stock history api">
+      <option name="closed" value="true" />
+      <created>1728993381979</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1728993381979</updated>
+    </task>
+    <task id="LOCAL-00023" summary="shift api">
+      <option name="closed" value="true" />
+      <created>1729092487685</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1729092487685</updated>
+    </task>
+    <task id="LOCAL-00024" summary="delete stock history api">
+      <option name="closed" value="true" />
+      <created>1729092560585</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1729092560585</updated>
+    </task>
+    <task id="LOCAL-00025" summary="work schedule api">
+      <option name="closed" value="true" />
+      <created>1729220107483</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1729220107484</updated>
+    </task>
+    <task id="LOCAL-00026" summary="work attendance api">
+      <option name="closed" value="true" />
+      <created>1729220305377</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1729220305377</updated>
+    </task>
+    <task id="LOCAL-00027" summary="feature user api">
+      <option name="closed" value="true" />
+      <created>1729220373622</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1729220373622</updated>
+    </task>
+    <task id="LOCAL-00028" summary="order item kitchen api">
+      <option name="closed" value="true" />
+      <created>1729417473305</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1729417473305</updated>
+    </task>
+    <task id="LOCAL-00029" summary="activity log api">
+      <option name="closed" value="true" />
+      <created>1729418821707</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1729418821707</updated>
+    </task>
+    <task id="LOCAL-00030" summary="payment feature">
+      <option name="closed" value="true" />
+      <created>1729422808304</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1729422808304</updated>
+    </task>
+    <task id="LOCAL-00031" summary="order feature">
+      <option name="closed" value="true" />
+      <created>1729424248247</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1729424248247</updated>
+    </task>
+    <task id="LOCAL-00032" summary="statistic api">
+      <option name="closed" value="true" />
+      <created>1729444687298</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1729444687298</updated>
+    </task>
+    <task id="LOCAL-00033" summary="statistic feature">
+      <option name="closed" value="true" />
+      <created>1729445052332</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1729445052332</updated>
+    </task>
+    <task id="LOCAL-00034" summary="statistic feature">
+      <option name="closed" value="true" />
+      <created>1729502918360</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1729502918360</updated>
+    </task>
+    <task id="LOCAL-00035" summary="statistic by hour feature">
+      <option name="closed" value="true" />
+      <created>1729507171454</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1729507171454</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add to menu item api" />
+    <MESSAGE value="order table api" />
+    <MESSAGE value="order item api" />
+    <MESSAGE value="order api" />
+    <MESSAGE value="fix annotation" />
+    <MESSAGE value="get order api" />
+    <MESSAGE value="supplier api" />
+    <MESSAGE value="image api" />
+    <MESSAGE value="product api" />
+    <MESSAGE value="add to supplier api" />
+    <MESSAGE value="add to user, role api" />
+    <MESSAGE value="stock api" />
+    <MESSAGE value="stock history api" />
+    <MESSAGE value="shift api" />
+    <MESSAGE value="delete stock history api" />
+    <MESSAGE value="work schedule api" />
+    <MESSAGE value="work attendance api" />
+    <MESSAGE value="feature user api" />
+    <MESSAGE value="order item kitchen api" />
+    <MESSAGE value="activity log api" />
+    <MESSAGE value="payment feature" />
+    <MESSAGE value="order feature" />
+    <MESSAGE value="statistic api" />
+    <MESSAGE value="statistic feature" />
+    <MESSAGE value="statistic by hour feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="statistic by hour feature" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
