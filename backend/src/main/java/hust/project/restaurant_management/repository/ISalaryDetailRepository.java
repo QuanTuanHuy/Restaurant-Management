@@ -10,6 +10,10 @@ import java.util.List;
 public interface ISalaryDetailRepository extends IBaseRepository<SalaryDetailModel> {
     List<SalaryDetailModel> findBySalaryPeriodId(Long salaryPeriodId);
 
+    List<SalaryDetailModel> findBySalaryPeriodIdIn(List<Long> salaryPeriodIds);
+
+    void deleteBySalaryPeriodId(Long salaryPeriodId);
+
     @Query("SELECT MAX(s.id) FROM SalaryDetailModel s")
     Long getMaxId();
 }

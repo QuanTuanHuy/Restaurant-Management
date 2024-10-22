@@ -69,6 +69,21 @@ public class SalaryDetailAdapter implements ISalaryDetailPort {
     }
 
     @Override
+    public List<SalaryDetailEntity> getSalaryDetailsBySalaryPeriodIds(List<Long> salaryPeriodIds) {
+        return salaryDetailMapper.toEntitiesFromModels(salaryDetailRepository.findBySalaryPeriodIdIn(salaryPeriodIds));
+    }
+
+    @Override
+    public void deleteSalaryDetailsBySalaryPeriodId(Long salaryPeriodId) {
+        try {
+            salaryDetailRepository.deleteBySalaryPeriodId(salaryPeriodId);
+        } catch (Exception e) {
+            log.error("[SalaryDetailAdapter] delete salary detail by salary period id failed, error: {}", e.getMessage());
+            throw new AppException(ErrorCode.DELETE_SALARY_DETAIL_FAILED);
+        }
+    }
+
+    @Override
     public Long getMaxId() {
         var result = salaryDetailRepository.getMaxId();
         return result == null ? 0 : result;

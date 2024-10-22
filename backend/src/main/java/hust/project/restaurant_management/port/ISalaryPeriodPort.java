@@ -13,6 +13,8 @@ public interface ISalaryPeriodPort {
 
     Pair<PageInfo, List<SalaryPeriodEntity>> getAllSalaryPeriods(GetSalaryPeriodRequest filter);
 
+    SalaryPeriodEntity getSalaryPeriodById(Long id);
+
     void deleteSalaryPeriod(Long id);
 
     Boolean isExistSalaryPeriodInTime(LocalDate fromDate, LocalDate toDate);

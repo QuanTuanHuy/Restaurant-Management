@@ -7,6 +7,7 @@ import hust.project.restaurant_management.entity.SalaryPeriodEntity;
 import hust.project.restaurant_management.entity.dto.request.CreateSalaryPeriodRequest;
 import hust.project.restaurant_management.exception.AppException;
 import hust.project.restaurant_management.mapper.ISalaryPeriodMapper;
+import hust.project.restaurant_management.port.ISalaryDetailPort;
 import hust.project.restaurant_management.port.ISalaryPeriodPort;
 import hust.project.restaurant_management.utils.GenerateCodeUtils;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,9 @@ import java.util.List;
 public class CreateSalaryPeriodUseCase {
     private final ISalaryPeriodPort salaryPeriodPort;
     private final ISalaryPeriodMapper salaryPeriodMapper;
+    private final ISalaryDetailPort salaryDetailPort;
 
-    private final CreateSalaryDetailUseCase createSalaryDetailUseCase;
+    private final CalculateSalaryDetailUseCase calculateSalaryDetails;
 
     @Transactional
     public SalaryPeriodEntity createSalaryPeriod(CreateSalaryPeriodRequest request) {
@@ -40,12 +42,13 @@ public class CreateSalaryPeriodUseCase {
 
         var savedSalaryPeriod = salaryPeriodPort.save(salaryPeriod);
 
-        List<SalaryDetailEntity> salaryDetails = createSalaryDetailUseCase.createSalaryDetails(savedSalaryPeriod);
+        List<SalaryDetailEntity> salaryDetails = calculateSalaryDetails.calculateSalaryDetails(savedSalaryPeriod);
+        var savedSalaryDetails = salaryDetailPort.saveAll(salaryDetails);
 
-        savedSalaryPeriod.setSalaryDetails(salaryDetails);
-        savedSalaryPeriod.setTotalSalary(salaryDetails.stream().mapToDouble(SalaryDetailEntity::getTotalSalary).sum());
+        savedSalaryPeriod.setSalaryDetails(savedSalaryDetails);
+        savedSalaryPeriod.setTotalSalary(savedSalaryDetails.stream().mapToDouble(SalaryDetailEntity::getTotalSalary).sum());
         savedSalaryPeriod.setPaidSalary(0.0);
 
-        return savedSalaryPeriod;
+        return salaryPeriodPort.save(savedSalaryPeriod);
     }
 }

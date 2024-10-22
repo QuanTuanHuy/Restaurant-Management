@@ -15,8 +15,8 @@ public class SalaryPeriodSpecification {
         return (root, query, builder) -> {
             var predicates = new ArrayList<Predicate>();
 
-            if (StringUtils.hasText(filter.getTile())) {
-                predicates.add(builder.like(root.get("title"), "%".concat(filter.getTile()).concat("%")));
+            if (StringUtils.hasText(filter.getTitle())) {
+                predicates.add(builder.like(root.get("title"), "%".concat(filter.getTitle()).concat("%")));
             }
 
             if (StringUtils.hasText(filter.getStatus())) {

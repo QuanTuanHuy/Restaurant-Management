@@ -14,6 +14,8 @@ public class SalaryDetailEntity {
 
     private Long userId;
 
+    private String userName;
+
     private Long salaryPeriodId;
 
     private Long totalWorkingDays;

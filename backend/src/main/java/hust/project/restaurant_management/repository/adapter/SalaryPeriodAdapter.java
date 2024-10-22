@@ -53,6 +53,15 @@ public class SalaryPeriodAdapter implements ISalaryPeriodPort {
     }
 
     @Override
+    public SalaryPeriodEntity getSalaryPeriodById(Long id) {
+        return salaryPeriodMapper.toEntityFromModel(salaryPeriodRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.error("[SalaryPeriodAdapter] get salary period by id failed, id, {}", id);
+                    return new AppException(ErrorCode.SALARY_PERIOD_NOT_FOUND);
+                }));
+    }
+
+    @Override
     public void deleteSalaryPeriod(Long id) {
         try {
             salaryPeriodRepository.deleteById(id);

@@ -37,7 +37,10 @@ public class UpdateStockHistoryUseCase {
     public StockHistoryEntity updateStockHistory(Long id, UpdateStockHistoryRequest request) {
         StockHistoryEntity stockHistory = stockHistoryPort.getStockHistoryById(id);
 
-        validateStockHistoryStatus(stockHistory.getStatus(), request.getStatus());
+        if (!stockHistory.getStatus().equals(request.getStatus())) {
+            validateStockHistoryStatus(stockHistory.getStatus(), request.getStatus());
+            stockHistory.setStatus(StockHistoryStatusEnum.valueOf(request.getStatus()).name());
+        }
 
         SupplierEntity supplier = supplierPort.getSupplierById(request.getSupplierId());
         UserEntity user = userPort.getUserById(request.getUserId());
@@ -45,7 +48,6 @@ public class UpdateStockHistoryUseCase {
         if (StringUtils.hasText(request.getCode())){
             stockHistory.setCode(request.getCode());
         }
-        stockHistory.setStatus(StockHistoryStatusEnum.valueOf(request.getStatus()).name());
         stockHistory.setNote(request.getNote());
         stockHistory.setSupplierId(request.getSupplierId());
         stockHistory.setUserId(request.getUserId());

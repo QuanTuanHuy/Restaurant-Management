@@ -13,7 +13,9 @@ public interface ISalaryPeriodService {
 
     Pair<PageInfo, List<SalaryPeriodEntity>> getAllSalaryPeriods(GetSalaryPeriodRequest filter);
 
-    SalaryPeriodEntity getSalaryPeriodDetail(Long id);
+    SalaryPeriodEntity getDetailSalaryPeriod(Long id);
+
+    SalaryPeriodEntity asyncCalculateSalaryPeriod(Long id);
 
     void deleteSalaryPeriod(Long id);
 }

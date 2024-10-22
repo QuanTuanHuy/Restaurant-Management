@@ -1,9 +1,9 @@
 package hust.project.restaurant_management.usercase;
 
-import hust.project.restaurant_management.constants.GenderEnum;
+import hust.project.restaurant_management.constants.GenderTypeEnum;
+import hust.project.restaurant_management.constants.SalaryTypeEnum;
 import hust.project.restaurant_management.entity.UserEntity;
 import hust.project.restaurant_management.entity.dto.request.UpdateUserRequest;
-import hust.project.restaurant_management.mapper.IUserMapper;
 import hust.project.restaurant_management.port.IRolePort;
 import hust.project.restaurant_management.port.IUserPort;
 import lombok.RequiredArgsConstructor;
@@ -14,17 +14,25 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UpdateUserUseCase {
     private final IUserPort userPort;
-    private final IUserMapper userMapper;
     private final IRolePort rolePort;
 
     @Transactional
     public UserEntity updateUser(Long userId, UpdateUserRequest request) {
-        userPort.getUserById(userId);
+        UserEntity user = userPort.getUserById(userId);
         rolePort.getRoleById(request.getRoleId());
 
-        UserEntity user = userMapper.toEntityFromRequest(request);
-        user.setGender(GenderEnum.valueOf(request.getGender()).name());
-        user.setId(userId);
+        user.setName(request.getName());
+        user.setPhoneNumber(request.getPhoneNumber());
+        user.setGender(GenderTypeEnum.valueOf(request.getGender()).name());
+        user.setDateOfBirth(request.getDateOfBirth());
+        user.setRoleId(request.getRoleId());
+        user.setCccd(request.getCccd());
+        user.setCvImg(request.getCvImg());
+        user.setPosition(request.getPosition());
+        user.setSalaryType(SalaryTypeEnum.valueOf(request.getSalaryType()).name());
+        user.setSalaryPerHour(request.getSalaryPerHour());
+        user.setSalaryPerMonth(request.getSalaryPerMonth());
+
 
         return userPort.save(user);
     }

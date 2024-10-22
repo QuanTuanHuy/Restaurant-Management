@@ -22,7 +22,7 @@ spring:
 app:
     jwt:
       signer-key: 1TjXchw5FloESb63Kc+DFhTARvpWL4jUGCwfGWxuG5SIf/1y/LgJxHnMqaF6A/ij
-      valid-duration: 36000
+      valid-duration: 360000
 
 server:
   port: 8080

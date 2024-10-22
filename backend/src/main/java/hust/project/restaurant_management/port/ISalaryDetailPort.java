@@ -16,5 +16,9 @@ public interface ISalaryDetailPort {
 
     List<SalaryDetailEntity> getSalaryDetailsBySalaryPeriodId(Long salaryPeriodId);
 
+    List<SalaryDetailEntity> getSalaryDetailsBySalaryPeriodIds(List<Long> salaryPeriodIds);
+
+    void deleteSalaryDetailsBySalaryPeriodId(Long salaryPeriodId);
+
     Long getMaxId();
 }

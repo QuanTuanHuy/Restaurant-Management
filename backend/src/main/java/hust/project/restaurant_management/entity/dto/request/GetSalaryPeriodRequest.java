@@ -10,6 +10,6 @@ import lombok.*;
 public class GetSalaryPeriodRequest {
     private Long page;
     private Long pageSize;
-    private String tile;
+    private String title;
     private String status;
 }

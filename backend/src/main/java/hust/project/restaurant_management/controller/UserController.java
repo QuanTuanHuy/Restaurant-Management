@@ -45,7 +45,7 @@ public class UserController {
         return ResponseEntity.ok(new Resource(userService.getAll(filter)));
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Resource> updateUser(
             @PathVariable(name = "id") Long id,
             @RequestBody UpdateUserRequest request
