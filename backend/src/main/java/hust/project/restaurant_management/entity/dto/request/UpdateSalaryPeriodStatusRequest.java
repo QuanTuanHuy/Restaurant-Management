@@ -1,5 +1,6 @@
 package hust.project.restaurant_management.entity.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter
@@ -7,10 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GetSalaryDetailRequest {
-    private Long page;
-    private Long pageSize;
-    private Long userId;
-    private Long salaryPeriodId;
+public class UpdateSalaryPeriodStatusRequest {
+    @NotBlank
     private String status;
 }

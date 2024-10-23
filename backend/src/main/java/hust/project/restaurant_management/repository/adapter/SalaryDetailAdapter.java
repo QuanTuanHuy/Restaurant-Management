@@ -74,6 +74,16 @@ public class SalaryDetailAdapter implements ISalaryDetailPort {
     }
 
     @Override
+    public List<SalaryDetailEntity> getSalaryDetailsByIds(List<Long> salaryDetailIds) {
+        return salaryDetailMapper.toEntitiesFromModels(salaryDetailRepository.findByIdIn(salaryDetailIds));
+    }
+
+    @Override
+    public List<SalaryDetailEntity> getSalaryDetailsByIdsAndSalaryPeriodId(List<Long> salaryDetailIds, Long salaryPeriodId) {
+        return salaryDetailMapper.toEntitiesFromModels(salaryDetailRepository.findBySalaryPeriodIdAndIdIn(salaryPeriodId, salaryDetailIds));
+    }
+
+    @Override
     public void deleteSalaryDetailsBySalaryPeriodId(Long salaryPeriodId) {
         try {
             salaryDetailRepository.deleteBySalaryPeriodId(salaryPeriodId);

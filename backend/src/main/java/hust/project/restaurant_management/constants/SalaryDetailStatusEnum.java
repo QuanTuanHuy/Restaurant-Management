@@ -1,6 +1,6 @@
 package hust.project.restaurant_management.constants;
 
-public enum SalaryPeriodStatusEnum {
+public enum SalaryDetailStatusEnum {
     PROCESSING,
-    DONE
+    PAID
 }

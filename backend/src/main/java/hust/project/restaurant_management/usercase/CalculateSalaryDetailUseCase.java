@@ -24,7 +24,7 @@ public class CalculateSalaryDetailUseCase {
     private final IWorkSchedulePort workSchedulePort;
     private final IWorkAttendancePort workAttendancePort;
 
-    public List<SalaryDetailEntity> calculateSalaryDetails(SalaryPeriodEntity salaryPeriod) {
+    public List<SalaryDetailEntity>     calculateSalaryDetails(SalaryPeriodEntity salaryPeriod) {
         List<UserEntity> users = userPort.getAllUsers().stream()
                 .filter(user -> !user.getName().equals("admin")).toList();
 
@@ -51,6 +51,7 @@ public class CalculateSalaryDetailUseCase {
             var salaryDetail = SalaryDetailEntity.builder()
                     .userId(user.getId())
                     .salaryPeriodId(salaryPeriod.getId())
+                    .paidSalary(0.0)
                     .build();
 
             List<WorkScheduleEntity> currentWorkSchedules = workSchedules.stream()
