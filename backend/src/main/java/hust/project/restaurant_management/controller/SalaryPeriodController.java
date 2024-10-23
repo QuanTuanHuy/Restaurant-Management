@@ -2,6 +2,8 @@ package hust.project.restaurant_management.controller;
 
 import hust.project.restaurant_management.entity.dto.request.CreateSalaryPeriodRequest;
 import hust.project.restaurant_management.entity.dto.request.GetSalaryPeriodRequest;
+import hust.project.restaurant_management.entity.dto.request.PaymentSalaryPeriodRequest;
+import hust.project.restaurant_management.entity.dto.request.UpdateSalaryPeriodStatusRequest;
 import hust.project.restaurant_management.entity.dto.response.Resource;
 import hust.project.restaurant_management.service.ISalaryPeriodService;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +47,24 @@ public class SalaryPeriodController {
                 .build();
         return ResponseEntity.ok(new Resource(salaryPeriodService.getAllSalaryPeriods(filter)));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Resource> paymentSalaryPeriod(
+            @PathVariable(name = "id") Long id,
+            @RequestBody PaymentSalaryPeriodRequest request
+    ) {
+        return ResponseEntity.ok(new Resource(salaryPeriodService.paymentSalaryPeriod(id, request)));
+    }
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Resource> updateSalaryPeriodStatus(
+            @PathVariable(name = "id") Long id,
+            @RequestBody UpdateSalaryPeriodStatusRequest request
+    ) {
+        salaryPeriodService.updateSalaryPeriodStatus(id, request);
+        return ResponseEntity.ok(new Resource(null));
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Resource> deleteSalaryPeriod(@PathVariable(name = "id") Long id) {

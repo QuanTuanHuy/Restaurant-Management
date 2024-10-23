@@ -12,6 +12,10 @@ public interface ISalaryDetailRepository extends IBaseRepository<SalaryDetailMod
 
     List<SalaryDetailModel> findBySalaryPeriodIdIn(List<Long> salaryPeriodIds);
 
+    List<SalaryDetailModel> findByIdIn(List<Long> salaryDetailIds);
+
+    List<SalaryDetailModel> findBySalaryPeriodIdAndIdIn(Long salaryPeriodId, List<Long> salaryDetailIds);
+
     void deleteBySalaryPeriodId(Long salaryPeriodId);
 
     @Query("SELECT MAX(s.id) FROM SalaryDetailModel s")

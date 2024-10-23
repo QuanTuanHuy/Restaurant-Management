@@ -29,6 +29,11 @@ public class CreateSalaryPeriodUseCase {
 
     @Transactional
     public SalaryPeriodEntity createSalaryPeriod(CreateSalaryPeriodRequest request) {
+        if (request.getFromDate().isAfter(request.getToDate())) {
+            log.error("[CreateSalaryPeriodUseCase] create salary period failed, error: From date is after to date");
+            throw new AppException(ErrorCode.CREATE_SALARY_PERIOD_FAILED);
+        }
+
         Boolean isExist = salaryPeriodPort.isExistSalaryPeriodInTime(request.getFromDate(), request.getToDate());
 
         if (isExist) {
@@ -43,6 +48,7 @@ public class CreateSalaryPeriodUseCase {
         var savedSalaryPeriod = salaryPeriodPort.save(salaryPeriod);
 
         List<SalaryDetailEntity> salaryDetails = calculateSalaryDetails.calculateSalaryDetails(savedSalaryPeriod);
+        salaryDetails.forEach(salaryDetail -> salaryDetail.setStatus(SalaryPeriodStatusEnum.PROCESSING.name()));
         var savedSalaryDetails = salaryDetailPort.saveAll(salaryDetails);
 
         savedSalaryPeriod.setSalaryDetails(savedSalaryDetails);

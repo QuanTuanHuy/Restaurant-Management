@@ -26,6 +26,8 @@ public class SalaryDetailEntity {
 
     private Double paidSalary;
 
+    private String status;
+
     private String paymentMethod;
 
     private UserEntity user;

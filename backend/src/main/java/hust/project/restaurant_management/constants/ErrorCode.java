@@ -82,6 +82,7 @@ public enum ErrorCode {
     CREATE_SALARY_PERIOD_FAILED(100069, "Create salary period failed", HttpStatus.BAD_REQUEST),
     SALARY_PERIOD_NOT_FOUND(100070, "Salary period not found", HttpStatus.NOT_FOUND),
     DELETE_SALARY_PERIOD_FAILED(100071, "Delete salary period failed", HttpStatus.BAD_REQUEST),
+    UPDATE_SALARY_PERIOD_FAILED(100072, "Update salary period failed", HttpStatus.BAD_REQUEST),
     CREATE_SALARY_DETAIL_FAILED(100072, "Create salary detail failed", HttpStatus.BAD_REQUEST),
     SALARY_DETAIL_NOT_FOUND(100073, "Salary detail not found", HttpStatus.NOT_FOUND),
     DELETE_SALARY_DETAIL_FAILED(100074, "Delete salary detail failed", HttpStatus.BAD_REQUEST),

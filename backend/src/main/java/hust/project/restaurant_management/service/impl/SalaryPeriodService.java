@@ -3,12 +3,11 @@ package hust.project.restaurant_management.service.impl;
 import hust.project.restaurant_management.entity.SalaryPeriodEntity;
 import hust.project.restaurant_management.entity.dto.request.CreateSalaryPeriodRequest;
 import hust.project.restaurant_management.entity.dto.request.GetSalaryPeriodRequest;
+import hust.project.restaurant_management.entity.dto.request.PaymentSalaryPeriodRequest;
+import hust.project.restaurant_management.entity.dto.request.UpdateSalaryPeriodStatusRequest;
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
 import hust.project.restaurant_management.service.ISalaryPeriodService;
-import hust.project.restaurant_management.usercase.AsyncCalculateSalaryPeriodUseCase;
-import hust.project.restaurant_management.usercase.CreateSalaryPeriodUseCase;
-import hust.project.restaurant_management.usercase.DeleteSalaryPeriodUseCase;
-import hust.project.restaurant_management.usercase.GetSalaryPeriodUseCase;
+import hust.project.restaurant_management.usercase.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ public class SalaryPeriodService implements ISalaryPeriodService {
     private final CreateSalaryPeriodUseCase createSalaryPeriodUseCase;
     private final GetSalaryPeriodUseCase getSalaryPeriodUseCase;
     private final DeleteSalaryPeriodUseCase deleteSalaryPeriodUseCase;
-    private final AsyncCalculateSalaryPeriodUseCase asyncCalculateSalaryPeriodUseCase;
+    private final UpdateSalaryPeriodUseCase updateSalaryPeriodUseCase;
 
     @Override
     public SalaryPeriodEntity createSalaryPeriod(CreateSalaryPeriodRequest request) {
@@ -39,8 +38,18 @@ public class SalaryPeriodService implements ISalaryPeriodService {
     }
 
     @Override
+    public SalaryPeriodEntity paymentSalaryPeriod(Long id, PaymentSalaryPeriodRequest request) {
+        return updateSalaryPeriodUseCase.paymentSalaryPeriod(id, request);
+    }
+
+    @Override
     public SalaryPeriodEntity asyncCalculateSalaryPeriod(Long id) {
-        return asyncCalculateSalaryPeriodUseCase.asyncCalculateSalaryPeriod(id);
+        return updateSalaryPeriodUseCase.asyncCalculateSalaryPeriod(id);
+    }
+
+    @Override
+    public void updateSalaryPeriodStatus(Long id, UpdateSalaryPeriodStatusRequest request) {
+        updateSalaryPeriodUseCase.updateSalaryPeriodStatus(id, request);
     }
 
     @Override
