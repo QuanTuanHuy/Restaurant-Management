@@ -8,6 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class MetaResource {
-    private Long code;
+    private Integer code;
     private String message;
 }
