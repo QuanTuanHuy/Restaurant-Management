@@ -28,13 +28,17 @@ public class GetOrderItemKitchenUseCase {
             return List.of();
         }
 
-        List<Long> tableIds = orderItemKitchens.stream().map(OrderItemKitchenEntity::getTableId).toList();
+        List<Long> tableIds = orderItemKitchens.stream()
+                .map(OrderItemKitchenEntity::getTableId)
+                .distinct().toList();
         var tables = tablePort.getTablesByIds(tableIds);
         var mapIdToTable = tables.stream()
                 .collect(Collectors.toMap(TableEntity::getId, Function.identity()));
 
 
-        List<Long> menuItemIds = orderItemKitchens.stream().map(OrderItemKitchenEntity::getMenuItemId).toList();
+        List<Long> menuItemIds = orderItemKitchens.stream()
+                .map(OrderItemKitchenEntity::getMenuItemId)
+                .distinct().toList();
         var menuItems = menuItemPort.getMenuItemsByIds(menuItemIds);
         var mapIdToMenuItem = menuItems.stream()
                 .collect(Collectors.toMap(MenuItemEntity::getId, Function.identity()));

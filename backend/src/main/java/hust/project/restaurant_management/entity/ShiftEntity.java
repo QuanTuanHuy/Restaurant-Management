@@ -17,4 +17,6 @@ public class ShiftEntity {
     private LocalTime startTime;
 
     private LocalTime endTime;
+
+    private String status;
 }

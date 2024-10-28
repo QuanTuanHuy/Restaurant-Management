@@ -31,14 +31,14 @@ public class GetStockHistoryUseCase {
         var stockHistories = result.getSecond();
 
         List<SupplierEntity> suppliers = supplierPort.getSuppliersByIds(
-                stockHistories.stream().map(StockHistoryEntity::getSupplierId).toList()
+                stockHistories.stream().map(StockHistoryEntity::getSupplierId).distinct().toList()
         );
         var mapIdToSupplier = suppliers.stream().collect(
                 Collectors.toMap(SupplierEntity::getId, Function.identity())
         );
 
         List<UserEntity> users = userPort.getUsersByIds(
-                stockHistories.stream().map(StockHistoryEntity::getUserId).toList()
+                stockHistories.stream().map(StockHistoryEntity::getUserId).distinct().toList()
         );
         var mapIdToUser = users.stream().collect(
                 Collectors.toMap(UserEntity::getId, Function.identity())

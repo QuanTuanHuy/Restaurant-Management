@@ -116,12 +116,16 @@ public class UpdateStockHistoryUseCase {
 
         if(savedStockHistory.getStatus().equals(StockHistoryStatusEnum.DONE.name())) {
             updateStockUseCase.syncStock(id);
+
             activityLogPort.save(ActivityLogEntity.builder()
                             .userId(user.getId())
                             .userName(user.getName())
                             .action(ActivityLogActionEnum.IMPORT_PRODUCT.name())
                             .amount(savedStockHistory.getTotalPrice())
                     .build());
+
+            supplier.setTotalCost(supplier.getTotalCost() + savedStockHistory.getTotalPrice());
+            supplierPort.save(supplier);
         }
 
         return savedStockHistory;

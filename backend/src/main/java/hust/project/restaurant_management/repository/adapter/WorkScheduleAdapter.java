@@ -56,6 +56,11 @@ public class WorkScheduleAdapter implements IWorkSchedulePort {
     }
 
     @Override
+    public boolean isWorkScheduleExistByShiftId(Long shiftId) {
+        return workScheduleRepository.existsByShiftId(shiftId);
+    }
+
+    @Override
     public void deleteWorkScheduleById(Long id) {
         try {
             workScheduleRepository.deleteById(id);

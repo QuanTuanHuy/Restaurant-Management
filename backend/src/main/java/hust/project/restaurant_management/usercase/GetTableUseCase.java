@@ -30,7 +30,10 @@ public class GetTableUseCase {
     }
 
     public List<TableEntity> getAllTables() {
-        return tablePort.getAllTables();
+        return tablePort.getAllTables()
+                .stream()
+                .filter(table -> table.getIsActive().equals(true))
+                .toList();
     }
 
     public List<TableEntity> getAllTablesAvailable(GetTableAvailableRequest filter) {

@@ -39,4 +39,10 @@ public class ShiftController {
         return ResponseEntity.ok(new Resource(shiftService.updateShift(id, request)));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Resource> deleteShift(@PathVariable(name = "id") Long id) {
+        shiftService.deleteShift(id);
+        return ResponseEntity.ok(new Resource(null));
+    }
+
 }

@@ -48,7 +48,7 @@ public class ImageAdapter implements IImagePort {
     }
 
     @Override
-    public List<ImageEntity> getImagesByEntityIdInAndEntityType(List<Long> entityIds, String entityType) {
+    public List<ImageEntity> getImagesByEntityIdsAndEntityType(List<Long> entityIds, String entityType) {
         return imageMapper.toEntitiesFromModels(
                 imageRepository.findByEntityIdInAndEntityType(entityIds, entityType)
         );

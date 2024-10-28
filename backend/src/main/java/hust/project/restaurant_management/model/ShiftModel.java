@@ -22,4 +22,6 @@ public class ShiftModel extends AuditTable {
     private LocalTime startTime;
 
     private LocalTime endTime;
+
+    private String status;
 }

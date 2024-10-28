@@ -88,6 +88,7 @@ public class UpdateSalaryPeriodUseCase {
         var mapSalaryIdToPaymentSalaryDetail = request.getPaymentSalaryDetails().stream()
                 .collect(Collectors.toMap(PaymentSalaryDetailRequest::getSalaryDetailId, Function.identity()));
 
+        String paymentMethod = PaymentMethodEnum.valueOf(request.getPaymentMethod()).name();
 
         salaryDetails.forEach(salaryDetail -> {
 
@@ -100,7 +101,7 @@ public class UpdateSalaryPeriodUseCase {
                     mapSalaryIdToPaymentSalaryDetail.get(salaryDetail.getId()).getPaidSalary();
 
             salaryDetail.setPaidSalary(totalPaidSalary);
-            salaryDetail.setPaymentMethod(PaymentMethodEnum.valueOf(request.getPaymentMethod()).name());
+            salaryDetail.setPaymentMethod(paymentMethod);
 
             if (totalPaidSalary >= salaryDetail.getTotalSalary()) {
                 salaryDetail.setStatus(SalaryDetailStatusEnum.PAID.name());

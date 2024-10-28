@@ -14,6 +14,8 @@ public interface IWorkSchedulePort {
 
     List<WorkScheduleEntity> getWorkSchedulesByIds(List<Long> ids);
 
+    boolean isWorkScheduleExistByShiftId(Long shiftId);
+
     void deleteWorkScheduleById(Long id);
 
 }

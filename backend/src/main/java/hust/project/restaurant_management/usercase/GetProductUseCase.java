@@ -34,7 +34,7 @@ public class GetProductUseCase {
 
         List<Long> productIds = products.stream().map(ProductEntity::getId).toList();
 
-        List<ImageEntity> images = imagePort.getImagesByEntityIdInAndEntityType(
+        List<ImageEntity> images = imagePort.getImagesByEntityIdsAndEntityType(
             productIds,
             ImageTypeEnum.PRODUCT.name()
         );

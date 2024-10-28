@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface IShiftRepository extends IBaseRepository<ShiftModel> {
 
-    @Query("SELECT s FROM ShiftModel s WHERE (s.startTime BETWEEN :startTime AND :endTime) OR (s.endTime BETWEEN :startTime AND :endTime)")
+    @Query("SELECT s FROM ShiftModel s WHERE (s.startTime BETWEEN :startTime AND :endTime) OR (s.endTime BETWEEN :startTime AND :endTime) AND s.status = 'ACTIVE'")
     List<ShiftModel> findShiftOverlapping(@Param("startTime") LocalTime startTime,
                               @Param("endTime") LocalTime endTime);
 }
