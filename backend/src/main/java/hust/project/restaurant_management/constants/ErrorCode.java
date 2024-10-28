@@ -86,6 +86,8 @@ public enum ErrorCode {
     CREATE_SALARY_DETAIL_FAILED(100072, "Create salary detail failed", HttpStatus.BAD_REQUEST),
     SALARY_DETAIL_NOT_FOUND(100073, "Salary detail not found", HttpStatus.NOT_FOUND),
     DELETE_SALARY_DETAIL_FAILED(100074, "Delete salary detail failed", HttpStatus.BAD_REQUEST),
+    JSON_PARSE_FAILED(100075, "Json parse failed", HttpStatus.BAD_REQUEST),
+    GET_CACHE_FAILED(100076, "Get cache failed", HttpStatus.BAD_REQUEST),
     ;
 
     ErrorCode(int code, String message, HttpStatusCode httpStatusCode) {
