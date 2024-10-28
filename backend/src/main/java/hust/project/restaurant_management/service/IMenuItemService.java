@@ -14,6 +14,8 @@ public interface IMenuItemService {
 
     Pair<PageInfo, List<MenuItemEntity>> getAllMenuItems(GetMenuItemRequest filter);
 
+    List<MenuItemEntity> getAllMenuItems();
+
     MenuItemEntity getDetailMenuItem(Long id);
 
     MenuItemEntity updateMenuItem(Long id, UpdateMenuItemRequest request);

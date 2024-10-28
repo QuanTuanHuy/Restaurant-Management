@@ -17,6 +17,8 @@ public interface ITableService {
 
     List<TableEntity> getAllTablesAvailable(GetTableAvailableRequest filter);
 
+    List<TableEntity> getAllTables();
+
     TableEntity getDetailTable(Long id);
 
     TableEntity updateTable(Long id, UpdateTableRequest request);

@@ -11,6 +11,9 @@ import hust.project.restaurant_management.usercase.DeleteProductUseCase;
 import hust.project.restaurant_management.usercase.GetProductUseCase;
 import hust.project.restaurant_management.usercase.UpdateProductUseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,7 @@ public class ProductService implements IProductService {
     private final DeleteProductUseCase deleteProductUseCase;
 
     @Override
+    @CachePut(value = "product", key = "#result.id")
     public ProductEntity createProduct(CreateProductRequest request) {
         return createProductUseCase.createProduct(request);
     }
@@ -35,16 +39,19 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    @Cacheable(value = "product", key = "#id")
     public ProductEntity getProductDetail(Long id) {
         return getProductUseCase.getProductDetail(id);
     }
 
     @Override
+    @CachePut(value = "product", key = "#id")
     public ProductEntity updateProduct(Long id, UpdateProductRequest request) {
         return updateProductUseCase.updateProduct(id, request);
     }
 
     @Override
+    @CacheEvict(value = "product", key = "#id")
     public void deleteProduct(Long id) {
         deleteProductUseCase.deleteProduct(id);
     }
