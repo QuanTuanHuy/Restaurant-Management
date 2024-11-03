@@ -13,12 +13,13 @@ import java.util.List;
 public class GetOrderRequest {
     private Long page;
     private Long pageSize;
-    private String orderStatus;
+    private List<String> orderStatus;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String paymentMethod;
     private List<Long> tableIds;
 
-    private Long userId;
-    private Long customerId;
+    private String userName;
+    private String customerName;
+    private String note;
 }

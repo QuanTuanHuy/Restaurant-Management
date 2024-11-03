@@ -56,7 +56,7 @@ public class GetSalaryPeriodUseCase {
 
 
     private void setUserNameForSalaryDetails(List<SalaryDetailEntity> salaryDetails) {
-        List<Long> userIds = salaryDetails.stream().map(SalaryDetailEntity::getUserId).toList();
+        List<Long> userIds = salaryDetails.stream().map(SalaryDetailEntity::getUserId).distinct().toList();
         List<UserEntity> users = userPort.getUsersByIds(userIds);
         var mapIdToUserName = users.stream().collect(Collectors.toMap(UserEntity::getId, UserEntity::getName));
 
