@@ -5,7 +5,7 @@ import hust.project.restaurant_management.entity.dto.request.GetStatisticByMenuI
 import hust.project.restaurant_management.entity.dto.request.GetStatisticByRevenueRequest;
 import hust.project.restaurant_management.entity.dto.response.*;
 import hust.project.restaurant_management.service.IStatisticService;
-import hust.project.restaurant_management.usercase.GetStatisticUseCase;
+import hust.project.restaurant_management.usecase.GetStatisticUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

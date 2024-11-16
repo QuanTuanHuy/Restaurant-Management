@@ -4,9 +4,9 @@ import hust.project.restaurant_management.entity.WorkScheduleEntity;
 import hust.project.restaurant_management.entity.dto.request.CreateWorkScheduleRequest;
 import hust.project.restaurant_management.entity.dto.request.GetWorkScheduleRequest;
 import hust.project.restaurant_management.service.IWorkScheduleService;
-import hust.project.restaurant_management.usercase.CreateWorkScheduleUseCase;
-import hust.project.restaurant_management.usercase.DeleteWorkScheduleUseCase;
-import hust.project.restaurant_management.usercase.GetWorkScheduleUseCase;
+import hust.project.restaurant_management.usecase.CreateWorkScheduleUseCase;
+import hust.project.restaurant_management.usecase.DeleteWorkScheduleUseCase;
+import hust.project.restaurant_management.usecase.GetWorkScheduleUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

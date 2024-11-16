@@ -4,10 +4,10 @@ import hust.project.restaurant_management.entity.ShiftEntity;
 import hust.project.restaurant_management.entity.dto.request.CreateShiftRequest;
 import hust.project.restaurant_management.entity.dto.request.UpdateShiftRequest;
 import hust.project.restaurant_management.service.IShiftService;
-import hust.project.restaurant_management.usercase.CreateShiftUseCase;
-import hust.project.restaurant_management.usercase.DeleteShiftUseCase;
-import hust.project.restaurant_management.usercase.GetShiftUseCase;
-import hust.project.restaurant_management.usercase.UpdateShiftUseCase;
+import hust.project.restaurant_management.usecase.CreateShiftUseCase;
+import hust.project.restaurant_management.usecase.DeleteShiftUseCase;
+import hust.project.restaurant_management.usecase.GetShiftUseCase;
+import hust.project.restaurant_management.usecase.UpdateShiftUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
