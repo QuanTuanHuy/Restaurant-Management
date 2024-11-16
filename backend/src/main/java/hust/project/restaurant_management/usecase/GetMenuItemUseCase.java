@@ -22,6 +22,10 @@ public class GetMenuItemUseCase {
         return menuItemPort.getAllMenuItems(filter);
     }
 
+    public List<MenuItemEntity> getAllMenuItems() {
+        return menuItemPort.getAllMenuItems();
+    }
+
     public MenuItemEntity getDetailMenuItem(Long id) {
         MenuItemEntity menuItem = menuItemPort.getMenuItemById(id);
         MenuSectionEntity menuSection = menuSectionPort.getMenuSectionById(menuItem.getMenuSectionId());

@@ -47,7 +47,7 @@ public class GetStatisticUseCase {
         );
 
         List<Long> menuItemIds = orderItems.stream()
-                .map(OrderItemEntity::getMenuItemId).toList();
+                .map(OrderItemEntity::getMenuItemId).distinct().toList();
         List<MenuItemEntity> menuItems = menuItemPort.getMenuItemsByIds(menuItemIds);
         var mapIdToMenuItem = menuItems.stream()
                 .collect(Collectors.toMap(MenuItemEntity::getId, Function.identity()));

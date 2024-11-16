@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +25,7 @@ public class CreateUserUseCase {
     private final IUserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
+    @Transactional
     public UserEntity createUser(CreateUserRequest request) {
         UserEntity existedUser = userPort.getUserByEmail(request.getEmail());
         if (existedUser != null) {

@@ -6,6 +6,7 @@ import hust.project.restaurant_management.entity.dto.request.UpdateWorkAttendanc
 import hust.project.restaurant_management.port.IWorkAttendancePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -14,6 +15,7 @@ public class UpdateWorkAttendanceUseCase {
     private final IWorkAttendancePort workAttendancePort;
     private final GetWorkAttendanceUseCase getWorkAttendanceUseCase;
 
+    @Transactional
     public WorkAttendanceEntity updateWorkAttendance(Long id, UpdateWorkAttendanceRequest request) {
         var workAttendance = getWorkAttendanceUseCase.getDetailWorkAttendance(id);
 
@@ -35,7 +37,7 @@ public class UpdateWorkAttendanceUseCase {
                 workAttendance.setStatus(WorkAttendanceStatusEnum.LATE_OR_LEAVE_EARLY.name());
             }
         } else if (request.getCheckInTime() != null) {
-            workAttendance.setStatus(WorkAttendanceStatusEnum.NOT_YET_CLOCKED_IN.name());
+            workAttendance.setStatus(WorkAttendanceStatusEnum.NOT_YET_CLOCKED_OUT.name());
         } else if (request.getCheckOutTime() != null) {
             workAttendance.setStatus(WorkAttendanceStatusEnum.NOT_YET_CLOCKED_IN.name());
         }

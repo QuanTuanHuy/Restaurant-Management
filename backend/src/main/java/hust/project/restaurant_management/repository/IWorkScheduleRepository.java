@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface IWorkScheduleRepository extends IBaseRepository<WorkScheduleModel> {
     List<WorkScheduleModel> findByIdIn(List<Long> ids);
+
+    boolean existsByShiftId(Long shiftId);
 }

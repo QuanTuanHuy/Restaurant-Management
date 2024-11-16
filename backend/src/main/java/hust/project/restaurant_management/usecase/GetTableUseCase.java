@@ -29,6 +29,13 @@ public class GetTableUseCase {
         return tablePort.getTableById(id);
     }
 
+    public List<TableEntity> getAllTables() {
+        return tablePort.getAllTables()
+                .stream()
+                .filter(table -> table.getIsActive().equals(true))
+                .toList();
+    }
+
     public List<TableEntity> getAllTablesAvailable(GetTableAvailableRequest filter) {
         if (filter.getCheckInTime().isAfter(filter.getCheckOutTime()) ||
                 filter.getCheckInTime().isBefore(LocalDateTime.now())) {

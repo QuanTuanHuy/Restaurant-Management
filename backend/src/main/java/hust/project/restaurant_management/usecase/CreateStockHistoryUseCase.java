@@ -71,6 +71,8 @@ public class CreateStockHistoryUseCase {
                             .action("Nhập hàng")
                             .amount(totalPrice)
                     .build());
+
+            supplier.setTotalCost(supplier.getTotalCost() + totalPrice);
         }
 
         return saveStockHistory;

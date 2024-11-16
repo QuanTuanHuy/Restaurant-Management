@@ -42,7 +42,12 @@ public class MenuItemController {
         return ResponseEntity.ok(new Resource(menuItemService.getAllMenuItems(filter)));
     }
 
-    @PatchMapping("/{id}")
+    @GetMapping("/all")
+    public ResponseEntity<Resource> getAll() {
+        return ResponseEntity.ok(new Resource(menuItemService.getAllMenuItems()));
+    }
+
+    @PutMapping("/{id}")
     public ResponseEntity<Resource> updateMenuItem(
             @PathVariable(name = "id") Long id,
             @RequestBody UpdateMenuItemRequest request

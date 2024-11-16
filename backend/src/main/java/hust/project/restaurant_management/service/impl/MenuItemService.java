@@ -11,6 +11,10 @@ import hust.project.restaurant_management.usecase.DeleteMenuItemUseCase;
 import hust.project.restaurant_management.usecase.GetMenuItemUseCase;
 import hust.project.restaurant_management.usecase.UpdateMenuItemUseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +29,13 @@ public class MenuItemService implements IMenuItemService {
     private final DeleteMenuItemUseCase deleteMenuItemUseCase;
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "menu-item", allEntries = true)
+    },
+        put = {
+            @CachePut(value = "menu-item", key = "#result.id")
+        }
+    )
     public MenuItemEntity createMenuItem(CreateMenuItemRequest request) {
         return createMenuItemUseCase.createMenuItem(request);
     }
@@ -35,16 +46,28 @@ public class MenuItemService implements IMenuItemService {
     }
 
     @Override
+    @Cacheable(value = "menu-item")
+    public List<MenuItemEntity> getAllMenuItems() {
+        return getMenuItemUseCase.getAllMenuItems();
+    }
+
+    @Override
+    @Cacheable(value = "menu-item", key = "#id")
     public MenuItemEntity getDetailMenuItem(Long id) {
         return getMenuItemUseCase.getDetailMenuItem(id);
     }
 
     @Override
+    @CachePut(value = "menu-item", key = "#id")
     public MenuItemEntity updateMenuItem(Long id, UpdateMenuItemRequest request) {
         return updateMenuItemUseCase.updateMenuItem(id, request);
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "menu-item", key = "#id"),
+            @CacheEvict(value = "menu-item", allEntries = true)
+    })
     public void deleteMenuItem(Long id) {
         deleteMenuItemUseCase.deleteMenuItem(id);
     }

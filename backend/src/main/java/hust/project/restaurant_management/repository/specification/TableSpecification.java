@@ -21,6 +21,10 @@ public class TableSpecification {
                 predicates.add(builder.like(root.get("name"), "%".concat(filter.getName()).concat("%")));
             }
 
+            if (filter.getIsActive() != null) {
+                predicates.add(builder.equal(root.get("isActive"), filter.getIsActive()));
+            }
+
             return builder.and(predicates.toArray(new Predicate[0]));
         };
     }

@@ -44,6 +44,11 @@ public class TableController {
         return ResponseEntity.ok(new Resource(tableService.getAllTables(filter)));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<Resource> getAllTables() {
+        return ResponseEntity.ok(new Resource(tableService.getAllTables()));
+    }
+
     @GetMapping("/available")
     public ResponseEntity<Resource> getAllTablesAvailable(
             @RequestParam(name = "check_in_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime checkInTime,

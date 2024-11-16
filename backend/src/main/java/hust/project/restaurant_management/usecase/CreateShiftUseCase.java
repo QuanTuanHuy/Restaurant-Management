@@ -1,6 +1,7 @@
 package hust.project.restaurant_management.usecase;
 
 import hust.project.restaurant_management.constants.ErrorCode;
+import hust.project.restaurant_management.constants.ShiftStatusEnum;
 import hust.project.restaurant_management.entity.ShiftEntity;
 import hust.project.restaurant_management.entity.dto.request.CreateShiftRequest;
 import hust.project.restaurant_management.exception.AppException;
@@ -21,6 +22,7 @@ public class CreateShiftUseCase {
     @Transactional
     public ShiftEntity createShift(CreateShiftRequest request) {
         ShiftEntity shift = shiftMapper.toEntityFromRequest(request);
+        shift.setStatus(ShiftStatusEnum.ACTIVE.name());
 
         if (shiftPort.isOverlapShift(shift)) {
             log.error("[CreateShiftUseCase] create shift error: shift is overlap");
