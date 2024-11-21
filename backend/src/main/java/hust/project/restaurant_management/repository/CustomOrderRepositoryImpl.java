@@ -9,6 +9,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
@@ -25,19 +26,32 @@ public class CustomOrderRepositoryImpl implements CustomOrderRepository{
                 "(\n" +
                 "\tSELECT DISTINCT o.id\n" +
                 "    FROM orders o JOIN order_tables ot ON o.id = ot.order_id\n" +
+                "    JOIN users u ON o.user_id = u.id\n" +
+                "    JOIN customers c ON o.customer_id = c.id\n" +
                 "    WHERE (o.check_in_time BETWEEN :startTime AND :endTime)\n";
 
-        if (StringUtils.hasText(filter.getOrderStatus())) {
-            sql += "    AND o.order_status = '" + filter.getOrderStatus() + "'\n";
+        if (!CollectionUtils.isEmpty(filter.getOrderStatus())) {
+            StringBuilder orderStatus = new StringBuilder();
+            for (int i = 0; i < filter.getOrderStatus().size(); i++) {
+                orderStatus.append("'" + filter.getOrderStatus().get(i) + "'");
+                if (i < filter.getOrderStatus().size() - 1) {
+                    orderStatus.append(", ");
+                }
+            }
+
+            sql += "    AND o.order_status IN (" + orderStatus + ")\n";
         }
         if (StringUtils.hasText(filter.getPaymentMethod())) {
             sql += "    AND o.payment_method = '" + filter.getPaymentMethod() + "'\n";
         }
-        if (filter.getUserId() != null) {
-            sql += "    AND o.user_id = '" + filter.getUserId() + "'\n";
+        if (StringUtils.hasText(filter.getUserName())) {
+            sql += "    AND u.name LIKE '%" + filter.getUserName() + "%'\n";
         }
-        if (filter.getCustomerId() != null) {
-            sql += "    AND o.customer_id = '" + filter.getCustomerId() + "'\n";
+        if (StringUtils.hasText(filter.getCustomerName())) {
+            sql += "    AND c.name LIKE '%" + filter.getCustomerName() + "%'\n";
+        }
+        if (StringUtils.hasText(filter.getNote())) {
+            sql += "    AND o.note LIKE '%" + filter.getNote() + "%'\n";
         }
         if (filter.getTableIds() != null && !filter.getTableIds().isEmpty()) {
             StringBuilder tableIds = new StringBuilder();

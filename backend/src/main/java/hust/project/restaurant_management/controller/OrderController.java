@@ -36,18 +36,21 @@ public class OrderController {
     public ResponseEntity<Resource> getAllOrders(
             @RequestParam(name = "page", defaultValue = DEFAULT_PAGE) Long page,
             @RequestParam(name = "page_size", defaultValue = DEFAULT_PAGE_SIZE) Long pageSize,
-            @RequestParam(name = "order_status", required = false) String orderStatus,
+            @RequestParam(name = "order_status", required = false) List<String> orderStatus,
             @RequestParam(name = "start_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startTime,
             @RequestParam(name = "end_time") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endTime,
             @RequestParam(name = "payment_method", required = false) String paymentMethod,
-            @RequestParam(name = "user_id", required = false) Long userId,
-            @RequestParam(name = "customer_id", required = false) Long customerId,
+            @RequestParam(name = "user_name", required = false) String userName,
+            @RequestParam(name = "customer_name", required = false) String customerName,
+            @RequestParam(name = "note", required = false) String note,
             @RequestParam(name = "table_ids", required = false) List<Long> tableIds
     ) {
         var filter = GetOrderRequest.builder()
                 .page(page).pageSize(pageSize)
                 .orderStatus(orderStatus).startTime(startTime).endTime(endTime)
-                .paymentMethod(paymentMethod).userId(userId).customerId(customerId)
+                .paymentMethod(paymentMethod)
+                .userName(userName).customerName(customerName)
+                .note(note)
                 .tableIds(tableIds)
                 .build();
         return ResponseEntity.ok(new Resource(orderService.getAllOrders(filter)));
