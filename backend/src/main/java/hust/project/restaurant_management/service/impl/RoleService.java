@@ -3,9 +3,9 @@ package hust.project.restaurant_management.service.impl;
 import hust.project.restaurant_management.entity.RoleEntity;
 import hust.project.restaurant_management.entity.dto.request.CreateRoleRequest;
 import hust.project.restaurant_management.service.IRoleService;
-import hust.project.restaurant_management.usercase.CreateRoleUseCase;
-import hust.project.restaurant_management.usercase.DeleteRoleUseCase;
-import hust.project.restaurant_management.usercase.GetRoleUseCase;
+import hust.project.restaurant_management.usecase.CreateRoleUseCase;
+import hust.project.restaurant_management.usecase.DeleteRoleUseCase;
+import hust.project.restaurant_management.usecase.GetRoleUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

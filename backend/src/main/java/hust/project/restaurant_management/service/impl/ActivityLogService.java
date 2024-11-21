@@ -4,7 +4,7 @@ import hust.project.restaurant_management.entity.ActivityLogEntity;
 import hust.project.restaurant_management.entity.dto.request.GetActivityLogRequest;
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
 import hust.project.restaurant_management.service.IActivityLogService;
-import hust.project.restaurant_management.usercase.GetActivityLogUseCase;
+import hust.project.restaurant_management.usecase.GetActivityLogUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;

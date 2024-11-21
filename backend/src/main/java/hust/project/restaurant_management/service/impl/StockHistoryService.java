@@ -6,10 +6,10 @@ import hust.project.restaurant_management.entity.dto.request.GetStockHistoryRequ
 import hust.project.restaurant_management.entity.dto.request.UpdateStockHistoryRequest;
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
 import hust.project.restaurant_management.service.IStockHistoryService;
-import hust.project.restaurant_management.usercase.CreateStockHistoryUseCase;
-import hust.project.restaurant_management.usercase.DeleteStockHistoryUseCase;
-import hust.project.restaurant_management.usercase.GetStockHistoryUseCase;
-import hust.project.restaurant_management.usercase.UpdateStockHistoryUseCase;
+import hust.project.restaurant_management.usecase.CreateStockHistoryUseCase;
+import hust.project.restaurant_management.usecase.DeleteStockHistoryUseCase;
+import hust.project.restaurant_management.usecase.GetStockHistoryUseCase;
+import hust.project.restaurant_management.usecase.UpdateStockHistoryUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;

@@ -2,7 +2,7 @@ package hust.project.restaurant_management.service.impl;
 
 import hust.project.restaurant_management.entity.dto.request.QuantityStockRequest;
 import hust.project.restaurant_management.service.IStockService;
-import hust.project.restaurant_management.usercase.UpdateStockUseCase;
+import hust.project.restaurant_management.usecase.UpdateStockUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
