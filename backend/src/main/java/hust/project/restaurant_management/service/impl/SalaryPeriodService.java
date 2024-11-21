@@ -7,7 +7,7 @@ import hust.project.restaurant_management.entity.dto.request.PaymentSalaryPeriod
 import hust.project.restaurant_management.entity.dto.request.UpdateSalaryPeriodStatusRequest;
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
 import hust.project.restaurant_management.service.ISalaryPeriodService;
-import hust.project.restaurant_management.usercase.*;
+import hust.project.restaurant_management.usecase.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;

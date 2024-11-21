@@ -4,10 +4,10 @@ import hust.project.restaurant_management.entity.MenuSectionEntity;
 import hust.project.restaurant_management.entity.dto.request.CreateMenuSectionRequest;
 import hust.project.restaurant_management.entity.dto.request.UpdateMenuSectionRequest;
 import hust.project.restaurant_management.service.IMenuSectionService;
-import hust.project.restaurant_management.usercase.CreateMenuSectionUseCase;
-import hust.project.restaurant_management.usercase.DeleteMenuSectionUseCase;
-import hust.project.restaurant_management.usercase.GetMenuSectionUseCase;
-import hust.project.restaurant_management.usercase.UpdateMenuSectionUseCase;
+import hust.project.restaurant_management.usecase.CreateMenuSectionUseCase;
+import hust.project.restaurant_management.usecase.DeleteMenuSectionUseCase;
+import hust.project.restaurant_management.usecase.GetMenuSectionUseCase;
+import hust.project.restaurant_management.usecase.UpdateMenuSectionUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

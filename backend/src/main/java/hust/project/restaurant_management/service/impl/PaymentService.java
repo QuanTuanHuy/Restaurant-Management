@@ -3,7 +3,7 @@ package hust.project.restaurant_management.service.impl;
 import hust.project.restaurant_management.entity.PaymentEntity;
 import hust.project.restaurant_management.entity.dto.request.CreatePaymentRequest;
 import hust.project.restaurant_management.service.IPaymentService;
-import hust.project.restaurant_management.usercase.CreatePaymentUseCase;
+import hust.project.restaurant_management.usecase.CreatePaymentUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

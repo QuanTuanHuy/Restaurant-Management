@@ -1,10 +1,11 @@
-package hust.project.restaurant_management.service;
+package hust.project.restaurant_management.service.impl;
 
 import hust.project.restaurant_management.entity.WorkAttendanceEntity;
 import hust.project.restaurant_management.entity.dto.request.GetWorkAttendanceRequest;
 import hust.project.restaurant_management.entity.dto.request.UpdateWorkAttendanceRequest;
-import hust.project.restaurant_management.usercase.GetWorkAttendanceUseCase;
-import hust.project.restaurant_management.usercase.UpdateWorkAttendanceUseCase;
+import hust.project.restaurant_management.service.IWorkAttendanceService;
+import hust.project.restaurant_management.usecase.GetWorkAttendanceUseCase;
+import hust.project.restaurant_management.usecase.UpdateWorkAttendanceUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

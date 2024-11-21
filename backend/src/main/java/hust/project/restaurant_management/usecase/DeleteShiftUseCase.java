@@ -1,4 +1,4 @@
-package hust.project.restaurant_management.usercase;
+package hust.project.restaurant_management.usecase;
 
 import hust.project.restaurant_management.constants.ShiftStatusEnum;
 import hust.project.restaurant_management.port.IShiftPort;

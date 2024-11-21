@@ -5,9 +5,9 @@ import hust.project.restaurant_management.entity.dto.request.AddMenuItemsToOrder
 import hust.project.restaurant_management.entity.dto.request.GetOrderItemKitchenRequest;
 import hust.project.restaurant_management.entity.dto.request.UpdateOrderItemKitchenStatusRequest;
 import hust.project.restaurant_management.service.IOrderItemKitchenService;
-import hust.project.restaurant_management.usercase.CreateOrderItemKitchenUseCase;
-import hust.project.restaurant_management.usercase.GetOrderItemKitchenUseCase;
-import hust.project.restaurant_management.usercase.UpdateOrderItemKitchenUseCase;
+import hust.project.restaurant_management.usecase.CreateOrderItemKitchenUseCase;
+import hust.project.restaurant_management.usecase.GetOrderItemKitchenUseCase;
+import hust.project.restaurant_management.usecase.UpdateOrderItemKitchenUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
