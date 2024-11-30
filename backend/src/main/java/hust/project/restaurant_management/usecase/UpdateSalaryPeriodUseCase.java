@@ -16,7 +16,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -36,35 +39,41 @@ public class UpdateSalaryPeriodUseCase {
         validateSalaryPeriodNotDone(salaryPeriod);
 
         List<SalaryDetailEntity> salaryDetails = salaryDetailPort.getSalaryDetailsBySalaryPeriodId(id);
-
-
-        List<SalaryDetailEntity> newSalaryDetails = calculateSalaryDetailUseCase.calculateSalaryDetails(salaryPeriod);
-        var mapUserIdToSalaryDetail = newSalaryDetails.stream()
+        var mapUserIdToSalaryDetail = salaryDetails.stream()
                 .collect(Collectors.toMap(SalaryDetailEntity::getUserId, Function.identity()));
 
 
-        salaryDetails.forEach(salaryDetail -> {
-            var newSalaryDetail = mapUserIdToSalaryDetail.getOrDefault(salaryDetail.getUserId(), null);
+        List<SalaryDetailEntity> newSalaryDetails = calculateSalaryDetailUseCase.calculateSalaryDetails(salaryPeriod);
 
-            if (newSalaryDetail == null) {
-                return;
+        List<SalaryDetailEntity> notExistedSalaryDetails = new ArrayList<>();
+
+
+        newSalaryDetails.forEach(newSalaryDetail -> {
+            var currentSalaryDetail = mapUserIdToSalaryDetail.getOrDefault(newSalaryDetail.getUserId(), null);
+
+            if (ObjectUtils.isEmpty(currentSalaryDetail)) {
+                notExistedSalaryDetails.add(newSalaryDetail);
             }
 
-            salaryDetail.setTotalSalary(newSalaryDetail.getTotalSalary());
-            salaryDetail.setTotalWorkingDays(newSalaryDetail.getTotalWorkingDays());
-            salaryDetail.setTotalWorkingHours(newSalaryDetail.getTotalWorkingHours());
+            currentSalaryDetail.setTotalSalary(newSalaryDetail.getTotalSalary());
+            currentSalaryDetail.setTotalWorkingDays(newSalaryDetail.getTotalWorkingDays());
+            currentSalaryDetail.setTotalWorkingHours(newSalaryDetail.getTotalWorkingHours());
 
-            if (salaryDetail.getTotalSalary() > salaryDetail.getPaidSalary()) {
-                salaryDetail.setStatus(SalaryDetailStatusEnum.PROCESSING.name());
+            if (currentSalaryDetail.getTotalSalary() > currentSalaryDetail.getPaidSalary()) {
+                currentSalaryDetail.setStatus(SalaryDetailStatusEnum.PROCESSING.name());
             }
 
         });
 
         salaryDetailPort.saveAll(salaryDetails);
 
-        salaryPeriod.setTotalSalary(salaryDetails.stream().mapToDouble(SalaryDetailEntity::getTotalSalary).sum());
+        if (!CollectionUtils.isEmpty(notExistedSalaryDetails)) {
+            salaryDetailPort.saveAll(notExistedSalaryDetails);
+        }
+
+        salaryPeriod.setTotalSalary(newSalaryDetails.stream().mapToDouble(SalaryDetailEntity::getTotalSalary).sum());
         var savedSalaryPeriod =  salaryPeriodPort.save(salaryPeriod);
-        savedSalaryPeriod.setSalaryDetails(salaryDetails);
+        savedSalaryPeriod.setSalaryDetails(newSalaryDetails);
 
         return savedSalaryPeriod;
     }

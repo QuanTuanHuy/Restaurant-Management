@@ -30,6 +30,10 @@ public class GetStockHistoryUseCase {
         var result = stockHistoryPort.getAllStockHistories(filter);
         var stockHistories = result.getSecond();
 
+        if (stockHistories.isEmpty()) {
+            return result;
+        }
+
         List<SupplierEntity> suppliers = supplierPort.getSuppliersByIds(
                 stockHistories.stream().map(StockHistoryEntity::getSupplierId).distinct().toList()
         );

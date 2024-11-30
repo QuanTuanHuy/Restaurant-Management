@@ -73,6 +73,7 @@ public class CreateStockHistoryUseCase {
                     .build());
 
             supplier.setTotalCost(supplier.getTotalCost() + totalPrice);
+            supplierPort.save(supplier);
         }
 
         return saveStockHistory;
