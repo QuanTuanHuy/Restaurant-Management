@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/payments")
@@ -19,5 +21,8 @@ public class PaymentController {
         return ResponseEntity.ok(new Resource(paymentService.createPayment(request)));
     }
 
-
+    @GetMapping
+    public ResponseEntity<Resource> getPaymentsByIds(@RequestParam(name = "ids") List<Long> ids) {
+        return ResponseEntity.ok(new Resource(paymentService.getPaymentsByIds(ids)));
+    }
 }
