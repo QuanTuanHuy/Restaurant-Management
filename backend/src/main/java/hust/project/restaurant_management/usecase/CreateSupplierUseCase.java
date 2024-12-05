@@ -19,6 +19,7 @@ public class CreateSupplierUseCase {
     @Transactional
     public SupplierEntity createSupplier(CreateSupplierRequest request) {
         SupplierEntity supplier = supplierMapper.toEntityFromRequest(request);
+        supplier.setTotalCost(0.0);
 
         if (!StringUtils.hasText(request.getCode())) {
             supplier.setCode(GenerateCodeUtils.generateCode("NCC", supplierPort.getMaxId() + 1));

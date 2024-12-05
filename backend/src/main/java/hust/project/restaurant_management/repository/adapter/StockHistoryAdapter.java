@@ -9,13 +9,8 @@ import hust.project.restaurant_management.mapper.IStockHistoryMapper;
 import hust.project.restaurant_management.model.StockHistoryModel;
 import hust.project.restaurant_management.port.IStockHistoryPort;
 import hust.project.restaurant_management.repository.IStockHistoryRepository;
-import hust.project.restaurant_management.repository.specification.StockHistorySpecification;
-import hust.project.restaurant_management.utils.PageInfoUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
@@ -41,16 +36,9 @@ public class StockHistoryAdapter implements IStockHistoryPort {
 
     @Override
     public Pair<PageInfo, List<StockHistoryEntity>> getAllStockHistories(GetStockHistoryRequest filter) {
-        Pageable pageable = PageRequest.of(Math.toIntExact(filter.getPage()), Math.toIntExact(filter.getPageSize()),
-                Sort.by("dateTime").descending());
+        var result = stockHistoryRepository.getAllStockHistories(filter);
 
-        // TODO: implement later
-
-        var result = stockHistoryRepository.findAll(StockHistorySpecification.getAllStockHistories(filter), pageable);
-
-        var pageInfo = PageInfoUtils.getPageInfo(result);
-
-        return Pair.of(pageInfo, stockHistoryMapper.toEntitiesFromModels(result.getContent()));
+        return Pair.of(result.getFirst(), stockHistoryMapper.toEntitiesFromModels(result.getSecond()));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package hust.project.restaurant_management.usecase;
 
+import hust.project.restaurant_management.constants.StockHistoryStatusEnum;
 import hust.project.restaurant_management.entity.StockHistoryEntity;
 import hust.project.restaurant_management.entity.StockHistoryItemEntity;
 import hust.project.restaurant_management.entity.SupplierEntity;
@@ -11,8 +12,10 @@ import hust.project.restaurant_management.port.IStockHistoryPort;
 import hust.project.restaurant_management.port.ISupplierPort;
 import hust.project.restaurant_management.port.IUserPort;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.function.Function;
@@ -20,6 +23,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class GetStockHistoryUseCase {
     private final IStockHistoryPort stockHistoryPort;
     private final ISupplierPort supplierPort;
@@ -27,6 +31,12 @@ public class GetStockHistoryUseCase {
     private final IStockHistoryItemPort stockHistoryItemPort;
 
     public Pair<PageInfo, List<StockHistoryEntity>> getAllStockHistories(GetStockHistoryRequest filter) {
+        if (CollectionUtils.isEmpty(filter.getStatuses())) {
+            filter.setStatuses(List.of(StockHistoryStatusEnum.PROCESSING.name(),
+                    StockHistoryStatusEnum.DONE.name(),
+                    StockHistoryStatusEnum.PENDING.name()));
+        }
+
         var result = stockHistoryPort.getAllStockHistories(filter);
         var stockHistories = result.getSecond();
 

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IStockHistoryRepository extends IBaseRepository<StockHistoryModel> {
+public interface IStockHistoryRepository extends IBaseRepository<StockHistoryModel>, CustomStockHistoryRepository {
     @Query("SELECT MAX(s.id) FROM StockHistoryModel s")
     Long getMaxId();
 }

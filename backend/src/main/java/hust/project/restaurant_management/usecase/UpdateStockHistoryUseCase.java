@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -51,6 +52,7 @@ public class UpdateStockHistoryUseCase {
         stockHistory.setNote(request.getNote());
         stockHistory.setSupplierId(request.getSupplierId());
         stockHistory.setUserId(request.getUserId());
+        stockHistory.setDateTime(LocalDateTime.now());
 
         if (!request.getStockHistoryItems().isEmpty()) {
             Double totalPrice = request.getStockHistoryItems().stream()

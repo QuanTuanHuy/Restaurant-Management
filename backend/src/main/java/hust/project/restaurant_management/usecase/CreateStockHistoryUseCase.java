@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -34,6 +35,7 @@ public class CreateStockHistoryUseCase {
 
         StockHistoryEntity stockHistory = stockHistoryMapper.toEntityFromRequest(request);
         stockHistory.setStatus(StockHistoryStatusEnum.valueOf(request.getStatus()).name());
+        stockHistory.setDateTime(LocalDateTime.now());
 
         Double totalPrice = request.getStockHistoryItems().stream()
                 .mapToDouble(item -> item.getPricePerUnit() * item.getQuantity()).sum();
