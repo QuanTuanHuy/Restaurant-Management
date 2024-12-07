@@ -19,6 +19,7 @@ public class CreateCustomerUseCase {
     public CustomerEntity createCustomer(CreateCustomerRequest request) {
         CustomerEntity customer = customerMapper.toEntityFromRequest(request);
         customer.setGender(GenderEnum.valueOf(request.getGender()).name());
+        customer.setTotalCost(0.0);
         return customerPort.save(customer);
     }
 }

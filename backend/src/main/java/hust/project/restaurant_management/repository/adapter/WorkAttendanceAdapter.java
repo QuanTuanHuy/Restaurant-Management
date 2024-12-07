@@ -37,7 +37,7 @@ public class WorkAttendanceAdapter implements IWorkAttendancePort {
         return workAttendanceMapper.toEntityFromModel(workAttendanceRepository.findById(id)
                 .orElseThrow(() -> {
                     log.error("[WorkAttendanceAdapter] get work attendance by id failed, {}", id);
-                    return new AppException(ErrorCode.CREATE_WORK_ATTENDANCE_FAILED);
+                    return new AppException(ErrorCode.WORK_ATTENDANCE_NOT_FOUND);
                 }));
     }
 

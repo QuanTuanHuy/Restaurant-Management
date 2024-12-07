@@ -1,5 +1,6 @@
 package hust.project.restaurant_management.entity.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ public class CreateCustomerRequest {
 
     private String email;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dob;
 
     private String gender;

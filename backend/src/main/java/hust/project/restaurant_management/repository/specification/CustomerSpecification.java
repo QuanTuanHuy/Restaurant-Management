@@ -18,7 +18,7 @@ public class CustomerSpecification {
             }
 
             if (StringUtils.hasText(filter.getPhoneNumber())) {
-                predicates.add(builder.like(root.get("phoneNumber"), filter.getPhoneNumber().concat("%")));
+                predicates.add(builder.like(root.get("phoneNumber"), "%".concat(filter.getPhoneNumber()).concat("%")));
             }
 
             if (StringUtils.hasText(filter.getAddress())) {
@@ -35,6 +35,14 @@ public class CustomerSpecification {
 
             if (filter.getEndTotalCost() != null) {
                 predicates.add(builder.lessThanOrEqualTo(root.get("totalCost"), filter.getEndTotalCost()));
+            }
+
+            if (filter.getBeginDateOfBirth() != null) {
+                predicates.add(builder.greaterThanOrEqualTo(root.get("dob"), filter.getBeginDateOfBirth()));
+            }
+
+            if (filter.getEndDateOfBirth() != null) {
+                predicates.add(builder.lessThanOrEqualTo(root.get("dob"), filter.getEndDateOfBirth()));
             }
 
             return builder.and(predicates.toArray(new Predicate[0]));

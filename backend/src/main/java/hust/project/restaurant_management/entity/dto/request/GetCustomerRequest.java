@@ -2,6 +2,8 @@ package hust.project.restaurant_management.entity.dto.request;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,4 +18,6 @@ public class GetCustomerRequest {
     private String gender;
     private Double beginTotalCost;
     private Double endTotalCost;
+    private LocalDate beginDateOfBirth;
+    private LocalDate endDateOfBirth;
 }
