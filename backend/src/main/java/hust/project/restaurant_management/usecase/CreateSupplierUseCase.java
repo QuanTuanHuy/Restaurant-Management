@@ -1,5 +1,6 @@
 package hust.project.restaurant_management.usecase;
 
+import hust.project.restaurant_management.constants.SupplierStatusEnum;
 import hust.project.restaurant_management.entity.SupplierEntity;
 import hust.project.restaurant_management.entity.dto.request.CreateSupplierRequest;
 import hust.project.restaurant_management.mapper.ISupplierMapper;
@@ -20,6 +21,7 @@ public class CreateSupplierUseCase {
     public SupplierEntity createSupplier(CreateSupplierRequest request) {
         SupplierEntity supplier = supplierMapper.toEntityFromRequest(request);
         supplier.setTotalCost(0.0);
+        supplier.setStatus(SupplierStatusEnum.ACTIVE.name());
 
         if (!StringUtils.hasText(request.getCode())) {
             supplier.setCode(GenerateCodeUtils.generateCode("NCC", supplierPort.getMaxId() + 1));

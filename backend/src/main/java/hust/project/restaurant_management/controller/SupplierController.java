@@ -36,7 +36,8 @@ public class SupplierController {
             @RequestParam(name = "debt_from", required = false) Double debtFrom,
             @RequestParam(name = "debt_to", required = false) Double debtTo,
             @RequestParam(name = "total_cost_from", required = false) Double totalCostFrom,
-            @RequestParam(name = "total_cost_to", required = false) Double totalCostTo
+            @RequestParam(name = "total_cost_to", required = false) Double totalCostTo,
+            @RequestParam(name = "status", required = false) String status
     ) {
         var filter = GetSupplierRequest.builder()
                 .page(page).pageSize(pageSize)
@@ -44,6 +45,7 @@ public class SupplierController {
                 .phoneNumber(phoneNumber)
                 .debtFrom(debtFrom).debtTo(debtTo)
                 .totalCostFrom(totalCostFrom).totalCostTo(totalCostTo)
+                .status(status)
                 .build();
         return ResponseEntity.ok(new Resource(supplierService.getAllSuppliers(filter)));
     }

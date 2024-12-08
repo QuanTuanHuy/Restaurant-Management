@@ -12,10 +12,10 @@ import hust.project.restaurant_management.usecase.DeleteTableUseCase;
 import hust.project.restaurant_management.usecase.GetTableUseCase;
 import hust.project.restaurant_management.usecase.UpdateTableUseCase;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
+//import org.springframework.cache.annotation.CacheEvict;
+//import org.springframework.cache.annotation.CachePut;
+//import org.springframework.cache.annotation.Cacheable;
+//import org.springframework.cache.annotation.Caching;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
@@ -30,14 +30,14 @@ public class TableService implements ITableService {
     private final DeleteTableUseCase deleteTableUseCase;
 
     @Override
-    @Caching(
-            evict = {
-                    @CacheEvict(value = "table", allEntries = true)
-            },
-            put = {
-                    @CachePut(value = "table", key = "#result.id")
-            }
-    )
+//    @Caching(
+//            evict = {
+//                    @CacheEvict(value = "table", allEntries = true)
+//            },
+//            put = {
+//                    @CachePut(value = "table", key = "#result.id")
+//            }
+//    )
     public TableEntity createTable(CreateTableRequest request) {
         return createTableUseCase.createTable(request);
     }
@@ -53,28 +53,28 @@ public class TableService implements ITableService {
     }
 
     @Override
-    @Cacheable(value = "table")
+//    @Cacheable(value = "table")
     public List<TableEntity> getAllTables() {
         return getTableUseCase.getAllTables();
     }
 
     @Override
-    @Cacheable(value = "table", key = "#id")
+//    @Cacheable(value = "table", key = "#id")
     public TableEntity getDetailTable(Long id) {
         return getTableUseCase.getDetailTable(id);
     }
 
     @Override
-    @CachePut(value = "table", key = "#id")
+//    @CachePut(value = "table", key = "#id")
     public TableEntity updateTable(Long id, UpdateTableRequest request) {
         return updateTableUseCase.updateTable(id, request);
     }
 
     @Override
-    @Caching(evict = {
-            @CacheEvict(value = "table", allEntries = true),
-            @CacheEvict(value = "table", key = "#id")
-    })
+//    @Caching(evict = {
+//            @CacheEvict(value = "table", allEntries = true),
+//            @CacheEvict(value = "table", key = "#id")
+//    })
     public void deleteTable(Long id) {
         deleteTableUseCase.deleteTable(id);
     }

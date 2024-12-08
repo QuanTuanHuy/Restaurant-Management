@@ -26,6 +26,8 @@ public class UpdateOrderUseCase {
     private final IOrderItemPort orderItemPort;
     private final IMenuItemPort menuItemPort;
 
+    private final CancelOrderUseCase cancelOrderUseCase;
+
     @Transactional
     public OrderEntity updateOrder(Long id, UpdateOrderRequest request) {
         OrderEntity order = orderPort.getOrderById(id);
@@ -143,11 +145,14 @@ public class UpdateOrderUseCase {
 
     @Transactional
     public void updateOrderStatus(Long id, UpdateOrderStatusRequest request) {
-        // TODO
-        // delete order table if order status is abandoned
 
         OrderEntity order = orderPort.getOrderById(id);
         validateOrderStatus(order.getOrderStatus(), OrderStatusEnum.valueOf(request.getStatus()).name());
+
+        if (request.getStatus().equals(OrderStatusEnum.CANCELLED.name())) {
+            cancelOrderUseCase.cancelOrder(id);
+            return;
+        }
 
         order.setOrderStatus(request.getStatus());
 
@@ -158,6 +163,7 @@ public class UpdateOrderUseCase {
         if ((oldStatus.equals(OrderStatusEnum.CONFIRMED.name()) && newStatus.equals(OrderStatusEnum.CHECKED_IN.name()))
         || (oldStatus.equals(OrderStatusEnum.CONFIRMED.name()) && newStatus.equals(OrderStatusEnum.ABANDONED.name()))
         || (oldStatus.equals(OrderStatusEnum.CONFIRMED.name()) && newStatus.equals(OrderStatusEnum.CANCELLED.name()))
+        || (oldStatus.equals(OrderStatusEnum.ABANDONED.name()) && newStatus.equals(OrderStatusEnum.CANCELLED.name()))
         || (oldStatus.equals(OrderStatusEnum.CHECKED_IN.name()) && newStatus.equals(OrderStatusEnum.COMPLETED.name()))) {
             return;
         }
