@@ -19,5 +19,7 @@ public interface IOrderPort {
 
     List<OrderEntity> getOrdersInTimeRangeAndStatus(LocalDateTime startTime, LocalDateTime endTime, String status);
 
+    List<OrderEntity> getOrdersByStatus(String status);
+
     void deleteOrderById(Long id);
 }

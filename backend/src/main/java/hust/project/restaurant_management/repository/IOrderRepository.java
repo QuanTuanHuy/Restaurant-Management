@@ -12,4 +12,6 @@ public interface IOrderRepository extends IBaseRepository<OrderModel>, CustomOrd
 
     List<OrderModel> findByCheckInTimeBetweenAndOrderStatusIs(LocalDateTime startTime,LocalDateTime endTime,
                                                               String status);
+
+    List<OrderModel> findByOrderStatus(String status);
 }

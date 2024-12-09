@@ -59,6 +59,11 @@ public class OrderAdapter implements IOrderPort {
     }
 
     @Override
+    public List<OrderEntity> getOrdersByStatus(String status) {
+        return orderMapper.toEntitiesFromModels(orderRepository.findByOrderStatus(status));
+    }
+
+    @Override
     public void deleteOrderById(Long id) {
         try {
             orderRepository.deleteById(id);
