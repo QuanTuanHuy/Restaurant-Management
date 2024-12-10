@@ -56,7 +56,8 @@ public class ShiftAdapter implements IShiftPort {
 
     @Override
     public boolean isOverlapShift(ShiftEntity shiftEntity) {
-        List<ShiftModel> shiftModels = shiftRepository.findShiftOverlapping(shiftEntity.getStartTime(),
+        Long currentShiftId = shiftEntity.getId() == null ? -1 : shiftEntity.getId();
+        List<ShiftModel> shiftModels = shiftRepository.findShiftOverlapping(currentShiftId, shiftEntity.getStartTime(),
                 shiftEntity.getEndTime());
 
         return !shiftModels.isEmpty();
