@@ -45,14 +45,14 @@ public class CustomStockHistoryRepositoryImpl implements CustomStockHistoryRepos
             JOIN products p ON shi.product_id = p.id
             WHERE p.name LIKE :productName
         )
-        SELECT sh.id, sh.code, sh.date_time, sh.status, sh.note, sh.user_id, sh.supplier_id
+        SELECT sh.*
         FROM stock_histories sh 
         JOIN V v ON sh.id = v.id
         ORDER BY sh.date_time DESC
         LIMIT :pageSize OFFSET :offset
-    """;
+        """;
 
-        Query query = entityManager.createNativeQuery(sql);
+        Query query = entityManager.createNativeQuery(sql, StockHistoryModel.class);
 
 
         query.setParameter("fromDate", filter.getFromDate());
@@ -67,27 +67,53 @@ public class CustomStockHistoryRepositoryImpl implements CustomStockHistoryRepos
         query.setParameter("offset", filter.getPage() * filter.getPageSize());
 
 
-        List<Object[]> results = query.getResultList();
+        List<StockHistoryModel> stockHistoryModels = query.getResultList();
 
-        List<StockHistoryModel> stockHistoryModels = results.stream()
-                .map(row -> StockHistoryModel.builder()
-                        .id(Long.parseLong(row[0].toString()))
-                        .code(row[1].toString())
-                        .dateTime(LocalDateTime.parse(row[2].toString().substring(0, 19),
-                                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .status(row[3].toString())
-                        .note(row[4].toString())
-                        .userId(Long.parseLong(row[5].toString()))
-                        .supplierId(Long.parseLong(row[6].toString()))
-                        .build())
-                .toList();
 
+        String sql2 = """
+        WITH T AS (
+            SELECT sh.id 
+            FROM stock_histories sh
+            JOIN users u ON sh.user_id = u.id
+            JOIN suppliers s ON sh.supplier_id = s.id
+            WHERE sh.date_time BETWEEN :fromDate AND :toDate
+              AND sh.status IN (:statuses)
+              AND sh.code LIKE :code
+              AND sh.note LIKE :note
+              AND u.name LIKE :userName
+              AND s.name LIKE :supplierName
+        ),
+        V AS (
+            SELECT DISTINCT t.id 
+            FROM T t
+            JOIN stock_history_items shi ON t.id = shi.stock_history_id
+            JOIN products p ON shi.product_id = p.id
+            WHERE p.name LIKE :productName
+        )
+        SELECT COUNT(DISTINCT sh.id)
+        FROM stock_histories sh 
+        JOIN V v ON sh.id = v.id
+        """;
+
+        Query secondQuery = entityManager.createNativeQuery(sql2);
+
+        secondQuery.setParameter("fromDate", filter.getFromDate());
+        secondQuery.setParameter("toDate", filter.getToDate());
+        secondQuery.setParameter("statuses", filter.getStatuses());
+        secondQuery.setParameter("code", "%" + filter.getCode() + "%");
+        secondQuery.setParameter("note", "%" + filter.getNote() + "%");
+        secondQuery.setParameter("userName", "%" + filter.getUserName() + "%");
+        secondQuery.setParameter("supplierName", "%" + filter.getSupplierName() + "%");
+        secondQuery.setParameter("productName", "%" + filter.getProductName() + "%");
+
+        List<Object> secondResult = secondQuery.getResultList();
+        Long totalRecord = Long.parseLong(secondResult.get(0).toString());
 
         PageInfo pageInfo = PageInfo.builder()
-                .pageSize(filter.getPageSize())
-                .totalRecord((long) stockHistoryModels.size())
+                .pageSize((long) stockHistoryModels.size())
+                .totalRecord(totalRecord)
                 .previousPage(filter.getPage() > 0 ? filter.getPage() - 1 : null)
-                .nextPage(results.size() == filter.getPageSize() ? filter.getPage() + 1 : null)
+                .nextPage((filter.getPage() + 1) * filter.getPageSize() < totalRecord ? filter.getPage() + 1 : null)
                 .build();
 
         return Pair.of(pageInfo, stockHistoryModels);

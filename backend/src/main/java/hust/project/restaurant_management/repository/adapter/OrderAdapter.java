@@ -37,8 +37,8 @@ public class OrderAdapter implements IOrderPort {
 
     @Override
     public Pair<PageInfo, List<OrderEntity>> getAllOrders(GetOrderRequest filter) {
-        List<OrderEntity> orderEntities = orderMapper.toEntitiesFromModels(orderRepository.getAllOrders(filter));
-        return Pair.of(PageInfo.builder().build(), orderEntities);
+        var result = orderRepository.getAllOrders(filter);
+        return Pair.of(result.getFirst(), orderMapper.toEntitiesFromModels(result.getSecond()));
     }
 
     @Override

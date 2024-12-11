@@ -1,16 +1,10 @@
 package hust.project.restaurant_management.usecase;
 
 import hust.project.restaurant_management.constants.StockHistoryStatusEnum;
-import hust.project.restaurant_management.entity.StockHistoryEntity;
-import hust.project.restaurant_management.entity.StockHistoryItemEntity;
-import hust.project.restaurant_management.entity.SupplierEntity;
-import hust.project.restaurant_management.entity.UserEntity;
+import hust.project.restaurant_management.entity.*;
 import hust.project.restaurant_management.entity.dto.request.GetStockHistoryRequest;
 import hust.project.restaurant_management.entity.dto.response.PageInfo;
-import hust.project.restaurant_management.port.IStockHistoryItemPort;
-import hust.project.restaurant_management.port.IStockHistoryPort;
-import hust.project.restaurant_management.port.ISupplierPort;
-import hust.project.restaurant_management.port.IUserPort;
+import hust.project.restaurant_management.port.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.util.Pair;
@@ -28,6 +22,7 @@ public class GetStockHistoryUseCase {
     private final IStockHistoryPort stockHistoryPort;
     private final ISupplierPort supplierPort;
     private final IUserPort userPort;
+    private final IProductPort productPort;
     private final IStockHistoryItemPort stockHistoryItemPort;
 
     public Pair<PageInfo, List<StockHistoryEntity>> getAllStockHistories(GetStockHistoryRequest filter) {
@@ -62,6 +57,8 @@ public class GetStockHistoryUseCase {
                 stockHistories.stream().map(StockHistoryEntity::getId).toList()
         );
 
+        setProductToStockHistoryItems(stockHistoryItems);
+
 
         stockHistories.forEach(stockHistory -> {
             stockHistory.setUser(mapIdToUser.getOrDefault(stockHistory.getUserId(), null));
@@ -85,8 +82,20 @@ public class GetStockHistoryUseCase {
         stockHistory.setUser(user);
 
         List<StockHistoryItemEntity> stockHistoryItems = stockHistoryItemPort.getStockHistoryItemsByStockHistoryId(id);
+
+        setProductToStockHistoryItems(stockHistoryItems);
+
         stockHistory.setStockHistoryItems(stockHistoryItems);
 
         return stockHistory;
+    }
+
+    private void setProductToStockHistoryItems(List<StockHistoryItemEntity> stockHistoryItems) {
+        List<Long> productIds = stockHistoryItems.stream().map(StockHistoryItemEntity::getProductId).distinct().toList();
+        List<ProductEntity> products = productPort.getProductsByIds(productIds);
+        var mapIdToProduct = products.stream().collect(Collectors.toMap(ProductEntity::getId, Function.identity()));
+
+        stockHistoryItems.forEach(si ->
+                si.setProduct(mapIdToProduct.getOrDefault(si.getProductId(), null)));
     }
 }
