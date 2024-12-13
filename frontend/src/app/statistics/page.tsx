@@ -1,3 +1,4 @@
+import { getDetailProduct } from "../services/productService";
 import { getStatisticByRevenueAndDate, RevenueStatisticPerDate } from "../services/statistic-service";
 
 
@@ -12,7 +13,8 @@ import { getStatisticByRevenueAndDate, RevenueStatisticPerDate } from "../servic
 // }
 
 export default async function Home() {
-
+    
+    getDetailProduct(1).then((res) => console.log(res));
 
     const result = await getStatisticByRevenueAndDate("2024-10-20", "2024-10-24");
 
