@@ -2,10 +2,7 @@ package hust.project.restaurant_management.usecase;
 
 import hust.project.restaurant_management.constants.OrderStatusEnum;
 import hust.project.restaurant_management.constants.PaymentMethodEnum;
-import hust.project.restaurant_management.entity.ActivityLogEntity;
-import hust.project.restaurant_management.entity.OrderEntity;
-import hust.project.restaurant_management.entity.OrderItemKitchenEntity;
-import hust.project.restaurant_management.entity.PaymentEntity;
+import hust.project.restaurant_management.entity.*;
 import hust.project.restaurant_management.entity.dto.request.CreatePaymentRequest;
 import hust.project.restaurant_management.entity.dto.request.GetOrderItemKitchenRequest;
 import hust.project.restaurant_management.mapper.IPaymentMapper;
@@ -21,6 +18,7 @@ import java.util.List;
 public class CreatePaymentUseCase {
     private final IOrderPort orderPort;
     private final IPaymentPort paymentPort;
+    private final ICustomerPort customerPort;
     private final IPaymentMapper paymentMapper;
     private final IOrderItemKitchenPort orderItemKitchenPort;
     private final IActivityLogPort activityLogPort;
@@ -63,6 +61,10 @@ public class CreatePaymentUseCase {
                         .action("Bán đơn hàng")
                         .amount(savedPayment.getNeedToPay())
                 .build());
+
+        CustomerEntity customer = customerPort.getCustomerById(order.getCustomerId());
+        customer.setTotalCost(customer.getTotalCost() + savedPayment.getNeedToPay());
+        customerPort.save(customer);
 
         return savedPayment;
     }

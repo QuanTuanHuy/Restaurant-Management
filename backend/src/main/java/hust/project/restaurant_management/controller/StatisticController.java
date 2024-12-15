@@ -24,8 +24,8 @@ public class StatisticController {
 
     @GetMapping("/by_revenue_and_date")
     public ResponseEntity<Resource> getStatisticByRevenueAndDate(
-            @RequestParam(name = "start_date") LocalDate startDate,
-            @RequestParam(name = "end_date") LocalDate endDate
+            @RequestParam(name = "start_date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+            @RequestParam(name = "end_date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate
     ) {
         var request = GetStatisticByRevenueRequest.builder()
                 .startDate(startDate).endDate(endDate)
@@ -35,8 +35,8 @@ public class StatisticController {
 
     @GetMapping("/by_revenue_and_hour")
     public ResponseEntity<Resource> getStatisticByRevenueAndHour(
-            @RequestParam(name = "start_date") LocalDate startDate,
-            @RequestParam(name = "end_date") LocalDate endDate
+            @RequestParam(name = "start_date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+            @RequestParam(name = "end_date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate
     ) {
         var request = GetStatisticByRevenueRequest.builder()
                 .startDate(startDate).endDate(endDate)
@@ -46,8 +46,8 @@ public class StatisticController {
 
     @GetMapping("/by_customer_and_date")
     public ResponseEntity<Resource> getStatisticByCustomerAndDate(
-            @RequestParam(name = "start_date") LocalDate startDate,
-            @RequestParam(name = "end_date") LocalDate endDate
+            @RequestParam(name = "start_date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+            @RequestParam(name = "end_date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate
     ) {
         var request = GetStatisticByCustomerRequest.builder()
                 .startDate(startDate).endDate(endDate)

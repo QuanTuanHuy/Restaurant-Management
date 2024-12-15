@@ -20,7 +20,7 @@ public class SalaryPeriodSpecification {
             }
 
             if (StringUtils.hasText(filter.getStatus())) {
-                predicates.add(builder.equal(root.get("status"), SalaryPeriodStatusEnum.valueOf(filter.getStatus())));
+                predicates.add(builder.equal(root.get("status"), SalaryPeriodStatusEnum.valueOf(filter.getStatus()).name()));
             }
 
             return builder.and(predicates.toArray(new Predicate[0]));

@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("api/v1/salary_details")
 public class SalaryDetailController {
+    public static final String DEFAULT_PAGE = "0";
+    public static final String DEFAULT_PAGE_SIZE = "15";
+
     private final ISalaryDetailService salaryDetailService;
 
 
     @GetMapping
     public ResponseEntity<Resource> getAllSalaryDetails(
-            @RequestParam(name = "page", defaultValue = "0") Long page,
-            @RequestParam(name = "page_size", defaultValue = "10") Long pageSize,
+            @RequestParam(name = "page", defaultValue = DEFAULT_PAGE) Long page,
+            @RequestParam(name = "page_size", defaultValue = DEFAULT_PAGE_SIZE) Long pageSize,
             @RequestParam(name = "user_id", required = false) Long userId,
             @RequestParam(name = "salary_period_id", required = false) Long salaryPeriodId,
             @RequestParam(name = "status", required = false) String status

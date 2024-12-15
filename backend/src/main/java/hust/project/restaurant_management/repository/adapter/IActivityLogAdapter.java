@@ -42,7 +42,7 @@ public class IActivityLogAdapter implements IActivityLogPort {
     @Override
     public Pair<PageInfo, List<ActivityLogEntity>> getAllActivityLogs(GetActivityLogRequest filter) {
         Pageable pageable = PageRequest.of(Math.toIntExact(filter.getPage()), Math.toIntExact(filter.getPageSize()),
-                Sort.by("createdAt").descending());
+                Sort.by("id").descending());
 
         var result = activityLogRepository.findAll(ActivityLogSpecification.getAllActivityLogs(filter), pageable);
 

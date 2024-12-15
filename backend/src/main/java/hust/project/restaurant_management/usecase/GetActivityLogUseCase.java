@@ -34,7 +34,10 @@ public class GetActivityLogUseCase {
         var mapIdToUser = users.stream()
                 .collect(Collectors.toMap(UserEntity::getId, Function.identity()));
 
-        activityLogs.forEach(activityLog -> activityLog.setUserName(mapIdToUser.get(activityLog.getUserId()).getName()));
+        activityLogs.forEach(activityLog -> {
+            var user = mapIdToUser.get(activityLog.getUserId());
+            activityLog.setUserName(user != null ? user.getName() : null);
+        });
 
         return Pair.of(result.getFirst(), activityLogs);
     }
