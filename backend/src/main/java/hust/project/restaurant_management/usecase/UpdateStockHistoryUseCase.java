@@ -80,7 +80,6 @@ public class UpdateStockHistoryUseCase {
         }
 
         List<StockHistoryItemEntity> modifiedStockHistoryItems = new ArrayList<>();
-        HashSet<Long> existedProductIds = new HashSet<>();
 
         currentStockHistoryItems.stream()
                 .filter(item -> mapProductIdToUpdateItem.containsKey(item.getProductId()))
@@ -94,14 +93,18 @@ public class UpdateStockHistoryUseCase {
                     item.setQuantity(requestItem.getQuantity());
                     item.setPricePerUnit(requestItem.getPricePerUnit());
                     modifiedStockHistoryItems.add(item);
-                    existedProductIds.add(item.getProductId());
                 });
+
+        HashSet<Long> existedProductIds = new HashSet<>(currentStockHistoryItems.stream()
+                .map(StockHistoryItemEntity::getProductId)
+                .filter(mapProductIdToUpdateItem::containsKey).toList());
 
         request.getStockHistoryItems().forEach(item -> {
             if (!existedProductIds.contains(item.getProductId())) {
                 StockHistoryItemEntity newItem = StockHistoryItemEntity.builder()
                         .productId(item.getProductId())
                         .quantity(item.getQuantity())
+                        .pricePerUnit(item.getPricePerUnit())
                         .stockHistoryId(id)
                         .build();
                 modifiedStockHistoryItems.add(newItem);
