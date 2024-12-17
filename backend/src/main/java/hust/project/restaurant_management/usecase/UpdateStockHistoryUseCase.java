@@ -86,6 +86,7 @@ public class UpdateStockHistoryUseCase {
                 .filter(item -> mapProductIdToUpdateItem.containsKey(item.getProductId()))
                 .forEach(item -> {
                     var requestItem = mapProductIdToUpdateItem.get(item.getProductId());
+                    existedProductIds.add(item.getProductId());
 
                     if (requestItem.getQuantity().equals(item.getQuantity()) && requestItem.getPricePerUnit().equals(item.getPricePerUnit())) {
                         return;
@@ -94,7 +95,6 @@ public class UpdateStockHistoryUseCase {
                     item.setQuantity(requestItem.getQuantity());
                     item.setPricePerUnit(requestItem.getPricePerUnit());
                     modifiedStockHistoryItems.add(item);
-                    existedProductIds.add(item.getProductId());
                 });
 
         request.getStockHistoryItems().forEach(item -> {
