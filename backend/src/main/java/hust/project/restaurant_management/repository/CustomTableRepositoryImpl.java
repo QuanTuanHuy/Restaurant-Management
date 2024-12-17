@@ -24,6 +24,7 @@ public class CustomTableRepositoryImpl implements CustomTableRepository{
                 "    FROM order_tables ot JOIN orders o ON ot.order_id = o.id\n" +
                 "    WHERE o.check_in_time BETWEEN :checkInTime AND :checkOutTime\n" +
                 "    OR o.check_out_time BETWEEN :checkInTime AND :checkOutTime\n" +
+                "    AND o.order_status IN ('CONFIRMED', 'CHECKED_IN') " +
                 ")";
 
         Query query = entityManager.createNativeQuery(sql, TableModel.class);
