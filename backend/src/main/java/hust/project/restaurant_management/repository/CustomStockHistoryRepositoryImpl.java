@@ -110,6 +110,7 @@ public class CustomStockHistoryRepositoryImpl implements CustomStockHistoryRepos
         Long totalRecord = Long.parseLong(secondResult.get(0).toString());
 
         PageInfo pageInfo = PageInfo.builder()
+                .totalPage((long) Math.ceil((double) totalRecord / filter.getPageSize()))
                 .pageSize((long) stockHistoryModels.size())
                 .totalRecord(totalRecord)
                 .previousPage(filter.getPage() > 0 ? filter.getPage() - 1 : null)

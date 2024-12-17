@@ -29,7 +29,7 @@ public class UserController {
         return ResponseEntity.ok(new Resource(userService.getDetailUser(id)));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     @GetMapping
     public ResponseEntity<Resource> getAllUsers(
             @RequestParam(name = "page", defaultValue = DEFAULT_PAGE) Long page,
