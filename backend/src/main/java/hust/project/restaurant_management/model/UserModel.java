@@ -55,4 +55,6 @@ public class UserModel extends AuditTable {
 
     @Column(name = "salary_per_month")
     private Double salaryPerMonth;
+
+    private Boolean isActive;
 }

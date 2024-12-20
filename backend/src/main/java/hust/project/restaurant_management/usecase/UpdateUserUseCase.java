@@ -32,6 +32,7 @@ public class UpdateUserUseCase {
         user.setSalaryType(SalaryTypeEnum.valueOf(request.getSalaryType()).name());
         user.setSalaryPerHour(request.getSalaryPerHour());
         user.setSalaryPerMonth(request.getSalaryPerMonth());
+        user.setIsActive(request.getIsActive());
 
 
         return userPort.save(user);
