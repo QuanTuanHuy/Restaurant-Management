@@ -26,7 +26,9 @@ public class CalculateSalaryDetailUseCase {
 
     public List<SalaryDetailEntity> calculateSalaryDetails(SalaryPeriodEntity salaryPeriod) {
         List<UserEntity> users = userPort.getAllUsers().stream()
-                .filter(user -> !user.getName().equals("Admin")).toList();
+                .filter(user -> !user.getName().equals("Admin") && user.getIsActive().equals(Boolean.TRUE))
+                .toList();
+
 
         if (users.isEmpty()) {
             return List.of();

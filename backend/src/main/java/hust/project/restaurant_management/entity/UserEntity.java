@@ -40,6 +40,8 @@ public class UserEntity {
 
     private Double salaryPerMonth;
 
+    private Boolean isActive;
+
     private RoleEntity role;
 
 }

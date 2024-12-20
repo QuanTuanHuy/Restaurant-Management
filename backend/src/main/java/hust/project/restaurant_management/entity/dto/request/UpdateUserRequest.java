@@ -29,4 +29,6 @@ public class UpdateUserRequest {
     private Double salaryPerHour;
 
     private Double salaryPerMonth;
+
+    private Boolean isActive;
 }
